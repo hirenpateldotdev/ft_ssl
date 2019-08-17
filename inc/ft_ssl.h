@@ -38,22 +38,17 @@ static const char	*g_flags[11] = {
 
 void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);
-int					parse_arguments(t_ssl *ssl, t_input **input, int arg_len,
-									char **arg);
+
 int					usage(int x);
 int					invalid_flag(char *command, char invalid_flag);
 int					invalid_command(char *invalid_command);
 int					invalid_string(char *command);
 int					invalid_file(char *invalid_file, char *command_val);
+
 int					md5_handler(t_ssl	*ssl, t_input **input);
 int					sha256_handler(t_ssl	*ssl, t_input **input);
 
 int					base64_handler(t_ssl	*ssl, t_input **input);
-
-
-int			check_if_no_input(t_ssl *ssl, t_input **input);
-int			go_through_arg(t_ssl *ssl, t_input **input,
-							int arg_len, char **arg);
 
 int					parse_message_digest(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
