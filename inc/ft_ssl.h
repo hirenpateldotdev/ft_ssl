@@ -34,9 +34,7 @@ static const char	*g_flags[11] = {
 	"-a", "-k", "-v"
 };
 
-int			check_if_no_input(t_ssl *ssl, t_input **input);
-int			go_through_arg(t_ssl *ssl, t_input **input,
-							int arg_len, char **arg);
+
 
 void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);
@@ -49,11 +47,16 @@ int					invalid_string(char *command);
 int					invalid_file(char *invalid_file, char *command_val);
 int					md5_handler(t_ssl	*ssl, t_input **input);
 int					sha256_handler(t_ssl	*ssl, t_input **input);
-int					sha224_handler(t_ssl	*ssl, t_input **input);
-int					sha512_handler(t_ssl	*ssl, t_input **input);
-int					sha384_handler(t_ssl	*ssl, t_input **input);
 
 int					base64_handler(t_ssl	*ssl, t_input **input);
+
+
+int			check_if_no_input(t_ssl *ssl, t_input **input);
+int			go_through_arg(t_ssl *ssl, t_input **input,
+							int arg_len, char **arg);
+
+int					parse_message_digest(t_ssl *ssl, t_input **input,
+					int arg_len, char **arg);
 // int					des_handler(t_ssl	*ssl, t_input **input);
 // int					des_ecb_handler(t_ssl	*ssl, t_input **input);
 // int					des_cbc_handler(t_ssl	*ssl, t_input **input);

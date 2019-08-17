@@ -14,7 +14,7 @@
 
 int			usage(int x)
 {
-	(void)x;
+	(void)(x);
 	ft_printf("usage: ft_ssl command [command opts] [command args]\n");
 	return (-1);
 }

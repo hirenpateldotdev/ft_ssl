@@ -5,9 +5,10 @@ LIBFT = libft
 HEADER = inc/ft_ssl.h src/message_digest/message_digest.h
 LIBFT_HEADER = libft/ft_printf.h
 SOURCES := ft_ssl.c
-SOURCES += free.c init.c parse.c parse_helper.c error.c
+SOURCES += free.c init.c error.c
 SOURCES += message_digest/MD5/handle_md5.c message_digest/MD5/md5.c
 SOURCES += message_digest/SHA256/handle_sha256.c message_digest/SHA256/sha256.c
+SOURCES += parse/message_digest_parse.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
 

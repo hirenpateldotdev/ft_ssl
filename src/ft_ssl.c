@@ -27,6 +27,32 @@ int				dispatch(t_ssl *ssl, t_input **input)
 	return (ret);
 }
 
+int			parse_command(char *arg, t_ssl *ssl, t_input **input)
+{
+	(void)input;
+	ssl->command_str = arg;
+	ssl->command = ft_arrchr((char**)g_command, g_valid_commands, arg);
+	if (ssl->command == -1)
+		return (-1);
+	return (0);
+}
+
+int			parse_arguments(t_ssl *ssl, t_input **input,
+							int arg_len, char **arg)
+{
+	if (arg_len < 2)
+		return (usage(SET_NO_ARG));
+	else if (parse_command(arg[1], ssl, input) == -1)
+		return (invalid_command(ssl->command_str));
+	if (ssl->command >= 0 && ssl->command <= 1)
+		return (parse_message_digest(ssl, input, arg_len, arg));
+	// else if (ssl->command == 2)
+	// 	return (parse_encoding(ssl, input, arg_len, arg));
+	// else if (ssl->command >= 3 && ssl->command <= 5)
+	// 	return (parse_encryption(ssl, input, arg_len, arg));
+	return (1);
+}
+
 int				main(int ac, char **av)
 {
 	t_ssl		*ssl;
