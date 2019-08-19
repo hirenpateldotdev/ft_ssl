@@ -78,9 +78,9 @@ int					parse_encoding(t_ssl *ssl, t_input **input,
 		if (arg[i][0] == '-' && arg[i][1] == 'd' && !arg[i][2])
 			ssl->mode = 1;
 		else if (arg[i][0] == '-' && arg[i][1] == 'i' && !arg[i][2])
-			parse_input_file(arg, i, ssl, input);
+			parse_input_file(arg, ++i, ssl, input);
 		else if (arg[i][0] == '-' && arg[i][1] == 'o' && !arg[i][2])
-			parse_output_file(arg, i, ssl);
+			parse_output_file(arg, ++i, ssl);
 		else if (!(arg[i][0] == '-' && arg[i][1] == 'e' && !arg[i][2]))
 		{
 			SET_INVALID_FLAG;
@@ -88,6 +88,6 @@ int					parse_encoding(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
-	ft_printf("\n___________\n");
+	ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,ssl->output_file);
 	return ((has_error(ssl) == 1 ? -1 : 1 ));
 }
