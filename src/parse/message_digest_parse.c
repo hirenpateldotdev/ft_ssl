@@ -12,19 +12,6 @@
 
 #include "../../inc/ft_ssl.h"
 
-int			has_error(t_ssl *ssl)
-{
-	int i;
-
-	i = -1;
-	while (++i < 5)
-	{
-		if (ssl->error[i] == 1)
-			return (1);
-	}
-	return (0);
-}
-
 int			parse_string_flag(char **arg, int i, t_ssl *ssl, t_input **input)
 {
 	if (!arg[i + 1])

@@ -35,6 +35,7 @@ static const char	*g_flags[11] = {
 };
 
 
+int			has_error(t_ssl *ssl);
 
 void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);
@@ -47,10 +48,13 @@ int					invalid_file(char *invalid_file, char *command_val);
 
 int					md5_handler(t_ssl	*ssl, t_input **input);
 int					sha256_handler(t_ssl	*ssl, t_input **input);
+int					base64_handler(t_ssl *ssl, t_input **input);
 
 int					base64_handler(t_ssl	*ssl, t_input **input);
 
 int					parse_message_digest(t_ssl *ssl, t_input **input,
+					int arg_len, char **arg);
+int					parse_encoding(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
 // int					des_handler(t_ssl	*ssl, t_input **input);
 // int					des_ecb_handler(t_ssl	*ssl, t_input **input);

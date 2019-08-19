@@ -41,6 +41,7 @@ typedef struct			s_ssl {
 
 	int					command;
 	char				*command_str;
+	int					mode;
 	int					ac;
 	int					p;
 	int					q;
@@ -54,6 +55,8 @@ typedef struct			s_ssl {
 	int					k;
 	int					v;
 	int					current_input;
+	int					input_file;
+	int					output_file;
 	int					error[5];
 	int					valid;
 }						t_ssl;

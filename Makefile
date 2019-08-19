@@ -2,13 +2,14 @@ NAME = ft_ssl
 CC = gcc
 CFLAGS = -Wall -Werror -g -Wextra
 LIBFT = libft
-HEADER = inc/ft_ssl.h src/message_digest/message_digest.h
+HEADER = inc/ft_ssl.h src/message_digest/message_digest.h src/encoding/encoding.h
 LIBFT_HEADER = libft/ft_printf.h
 SOURCES := ft_ssl.c
-SOURCES += free.c init.c error.c
+SOURCES += free.c init.c error.c support_func.c
 SOURCES += message_digest/MD5/handle_md5.c message_digest/MD5/md5.c
 SOURCES += message_digest/SHA256/handle_sha256.c message_digest/SHA256/sha256.c
-SOURCES += parse/message_digest_parse.c
+SOURCES += encoding/base64/base64.c
+SOURCES += parse/message_digest_parse.c parse/encoding_parse.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
 
