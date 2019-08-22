@@ -8,7 +8,7 @@ SOURCES := ft_ssl.c
 SOURCES += free.c init.c error.c support_func.c
 SOURCES += message_digest/MD5/handle_md5.c message_digest/MD5/md5.c
 SOURCES += message_digest/SHA256/handle_sha256.c message_digest/SHA256/sha256.c
-SOURCES += encoding/base64/base64.c
+SOURCES += encoding/base64/base64.c encoding/base64/base64_decode.c encoding/base64/base64_encode.c
 SOURCES += parse/message_digest_parse.c parse/encoding_parse.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
@@ -20,11 +20,6 @@ $(NAME): object
 	@make -C $(LIBFT)
 	rm -f ./$(NAME)
 	gcc -o $(NAME) $(CFLAGS) $(SOURCES) ./libft/libftprintf.a
-
-test:
-	@make re
-	@make clean
-	./ft_ssl md5 -q -r -p -s "hello"
 
 object: $(SOURCES)
 	@mkdir -p obj
@@ -38,7 +33,8 @@ clean:
 fclean: clean
 	@make fclean -C $(LIBFT)
 	@/bin/rm -f $(NAME)
-	@rm -rf src/SHA256/sha256.h.gch src/MD5/md5.h.gch .vscode
+	@rm -rf src/SHA256/sha256.h.gch src/MD5/md5.h.gch .vscode */.o
 	@/bin/rm -rf $(NAME).dSYM
+	@rm -rf *.o
 
 re: fclean all

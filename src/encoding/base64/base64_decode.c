@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   base64.h                                           :+:      :+:    :+:   */
+/*   base64_encode.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hirenpat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,17 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_BASE64_H
-# define FT_BASE64_H
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include "../../../inc/struct.h"
-# include "../../../libft/inc/ft_printf.h"
-
-static const char			g_b[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-int					base64_handler(t_ssl *ssl, t_input **input);
-unsigned char	    *base64_encode_handler(unsigned char *s, int len);
-
-#endif
+#include "base64.h"

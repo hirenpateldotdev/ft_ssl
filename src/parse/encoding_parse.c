@@ -88,6 +88,6 @@ int					parse_encoding(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
-	ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,ssl->output_file);
+	//ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,ssl->output_file);
 	return ((has_error(ssl) == 1 ? -1 : 1 ));
 }
