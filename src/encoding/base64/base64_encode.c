@@ -55,6 +55,7 @@ unsigned char	*base64_encode_handler(unsigned char *content, int content_len)
 	unsigned char	*n;
 
 	byte_pad(&content, content_len);
-	n = base64_encode(get_bit_len(content_len), ((content_len * 8) % 3), 0, content);
+	n = base64_encode(get_bit_len(content_len), ((content_len * 8) % 3), 0,
+		content);
 	return (n);
 }

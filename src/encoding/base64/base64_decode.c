@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "base64.h"
+
+unsigned char		*base64_decode_handler(unsigned char *s, int len)
+{
+	len++;
+	return (s);
+}
