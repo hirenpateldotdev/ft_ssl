@@ -19,7 +19,7 @@ all: $(NAME)
 $(NAME): object
 	@make -C $(LIBFT)
 	rm -f ./$(NAME)
-	gcc -o $(NAME) $(CFLAGS) $(SOURCES) ./libft/libftprintf.a
+	gcc -g -o $(NAME) $(CFLAGS) $(SOURCES) ./libft/libftprintf.a
 
 object: $(SOURCES)
 	@mkdir -p obj

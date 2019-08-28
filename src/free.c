@@ -34,7 +34,7 @@ void		free_input(t_ssl *ssl, t_input **input)
 		free(input[i]->content);
 		free(input[i]->descriptor);
 		free(input[i]->digest);
-		if (ssl->valid)
+		if (ssl->valid && (ssl->command >= 0 && ssl->command <= 1))
 			free_block(input[i]->b_p);
 	}
 	i = -1;
