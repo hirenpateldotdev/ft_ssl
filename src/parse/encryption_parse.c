@@ -16,6 +16,58 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input);
 int			parse_output_file(char **arg, int i, t_ssl *ssl, t_input **input);
 int			parse_stdin(t_ssl *ssl, t_input **input);
 
+int			parse_key(char **arg, int i, t_ssl *ssl, t_input **input)
+{
+	if (!arg[i + 1])
+	{
+		SET_INVALID_STRING;
+		return (0);
+	}
+	ssl->key = 1;
+	INPUT->key = ft_strdup(arg[i + 1]);
+	I_INPUT++;
+	return (1);
+}
+
+int			parse_salt(char **arg, int i, t_ssl *ssl, t_input **input)
+{
+	if (!arg[i + 1])
+	{
+		SET_INVALID_STRING;
+		return (0);
+	}
+	ssl->salt = 1;
+	INPUT->salt = ft_strdup(arg[i + 1]);
+	I_INPUT++;
+	return (1);
+}
+
+int			parse_pass(char **arg, int i, t_ssl *ssl, t_input **input)
+{
+	if (!arg[i + 1])
+	{
+		SET_INVALID_STRING;
+		return (0);
+	}
+	ssl->pass = 1;
+	INPUT->pass = ft_strdup(arg[i + 1]);
+	I_INPUT++;
+	return (1);
+}
+
+int			parse_vector(char **arg, int i, t_ssl *ssl, t_input **input)
+{
+	if (!arg[i + 1])
+	{
+		SET_INVALID_STRING;
+		return (0);
+	}
+	ssl->vector = 1;
+	INPUT->vector = ft_strdup(arg[i + 1]);
+	I_INPUT++;
+	return (1);
+}
+
 int					parse_encryption(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg)
 {
@@ -30,6 +82,14 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 			parse_input_file(arg, ++i, ssl, input);
 		else if (arg[i][0] == '-' && arg[i][1] == 'o' && !arg[i][2])
 			parse_output_file(arg, ++i, ssl, input);
+		else if (arg[i][0] == '-' && arg[i][1] == 'k' && !arg[i][2])
+			parse_key(arg, ++i, ssl, input);
+		else if (arg[i][0] == '-' && arg[i][1] == 'p' && !arg[i][2])
+			parse_pass(arg, ++i, ssl, input);
+		else if (arg[i][0] == '-' && arg[i][1] == 's' && !arg[i][2])
+			parse_salt(arg, ++i, ssl, input);
+		else if (arg[i][0] == '-' && arg[i][1] == 'v' && !arg[i][2])
+			parse_vector(arg, ++i, ssl, input);
 		else if (!(arg[i][0] == '-' && arg[i][1] == 'e' && !arg[i][2]))
 		{
 			SET_INVALID_FLAG;
