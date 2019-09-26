@@ -20,7 +20,7 @@ int				dispatch(t_ssl *ssl, t_input **input)
 	handle[0] = md5_handler;
 	handle[1] = sha256_handler;
 	handle[2] = base64_handler;
-	// handle[3] = des_handler;
+	handle[3] = des_handler;
 	// handle[4] = des_ecb_handler;
 	// handle[5] = des_cbc_handler;
 	ret = handle[ssl->command](ssl, input);
@@ -48,8 +48,8 @@ int			parse_arguments(t_ssl *ssl, t_input **input,
 		return (parse_message_digest(ssl, input, arg_len, arg));
 	else if (ssl->command == 2)
 		return (parse_encoding(ssl, input, arg_len, arg));
-	// else if (ssl->command >= 3 && ssl->command <= 5)
-	// 	return (parse_encryption(ssl, input, arg_len, arg));
+	else if (ssl->command >= 3 && ssl->command <= 5)
+		return (parse_encryption(ssl, input, arg_len, arg));
 	return (1);
 }
 

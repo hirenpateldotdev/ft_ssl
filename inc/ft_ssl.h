@@ -56,7 +56,9 @@ int					parse_message_digest(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
 int					parse_encoding(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
-// int					des_handler(t_ssl	*ssl, t_input **input);
+int					parse_encryption(t_ssl *ssl, t_input **input,
+					int arg_len, char **arg);
+int					des_handler(t_ssl	*ssl, t_input **input);
 // int					des_ecb_handler(t_ssl	*ssl, t_input **input);
 // int					des_cbc_handler(t_ssl	*ssl, t_input **input);
 #endif
