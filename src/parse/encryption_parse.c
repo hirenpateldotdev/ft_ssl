@@ -18,53 +18,53 @@ int			parse_stdin(t_ssl *ssl, t_input **input);
 
 int			parse_key(char **arg, int i, t_ssl *ssl, t_input **input)
 {
-	if (!arg[i + 1])
+	if (!arg[i])
 	{
 		SET_INVALID_STRING;
 		return (0);
 	}
 	ssl->key = 1;
-	INPUT->key = ft_strdup(arg[i + 1]);
-	I_INPUT++;
+	INPUT->key = ft_strdup(arg[i]);
+	ft_printf("key : %s \n",INPUT->key);
 	return (1);
 }
 
 int			parse_salt(char **arg, int i, t_ssl *ssl, t_input **input)
 {
-	if (!arg[i + 1])
+	if (!arg[i])
 	{
 		SET_INVALID_STRING;
 		return (0);
 	}
 	ssl->salt = 1;
-	INPUT->salt = ft_strdup(arg[i + 1]);
-	I_INPUT++;
+	INPUT->salt = ft_strdup(arg[i]);
+	ft_printf("salt : %s \n",INPUT->salt);
 	return (1);
 }
 
 int			parse_pass(char **arg, int i, t_ssl *ssl, t_input **input)
 {
-	if (!arg[i + 1])
+	if (!arg[i])
 	{
 		SET_INVALID_STRING;
 		return (0);
 	}
 	ssl->pass = 1;
-	INPUT->pass = ft_strdup(arg[i + 1]);
-	I_INPUT++;
+	INPUT->pass = ft_strdup(arg[i]);
+	ft_printf("pass : %s \n",INPUT->pass);
 	return (1);
 }
 
 int			parse_vector(char **arg, int i, t_ssl *ssl, t_input **input)
 {
-	if (!arg[i + 1])
+	if (!arg[i])
 	{
 		SET_INVALID_STRING;
 		return (0);
 	}
 	ssl->vector = 1;
-	INPUT->vector = ft_strdup(arg[i + 1]);
-	I_INPUT++;
+	INPUT->vector = ft_strdup(arg[i]);
+	ft_printf("vector : %s \n",INPUT->vector);
 	return (1);
 }
 
@@ -97,6 +97,7 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
-	//ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,input[0]->output_file);
+	ft_printf("parse over s : %s\n",INPUT->salt);
+	// ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,input[0]->output_file);
 	return ((has_error(ssl) == 1 ? -1 : 1 ));
 }
