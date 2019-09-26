@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_mode.c                                      :+:      :+:    :+:   */
+/*   helper_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hirenpat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -50,6 +50,18 @@ int			parse_output_file(char **arg, int i, t_ssl *ssl, t_input **input)
 		return (0);
 	}
 	input[0]->output_file = fd;
+	I_INPUT++;
+	return (0);
+}
+
+int			parse_stdin(t_ssl *ssl, t_input **input)
+{
+	int		fd;
+
+	fd = 0;
+	INPUT->length = ft_read_fd(fd, &INPUT->content);
+	INPUT->type = STDIN;
+	INPUT->descriptor = ft_strdup(INPUT->content);
 	I_INPUT++;
 	return (0);
 }

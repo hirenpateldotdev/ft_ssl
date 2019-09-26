@@ -1,6 +1,6 @@
 NAME = ft_ssl
 CC = gcc
-CFLAGS = -Wall -Werror -g -Wextra
+CFLAGS = -Wall -Werror -Wextra
 LIBFT = libft
 HEADER = inc/ft_ssl.h src/message_digest/message_digest.h src/encoding/encoding.h src/encryption/encryption.h
 LIBFT_HEADER = libft/ft_printf.h
@@ -10,7 +10,7 @@ SOURCES += message_digest/MD5/handle_md5.c message_digest/MD5/md5.c
 SOURCES += message_digest/SHA256/handle_sha256.c message_digest/SHA256/sha256.c
 SOURCES += encoding/base64/base64.c encoding/base64/base64_decode.c encoding/base64/base64_encode.c
 SOURCES += encryption/des/des.c encryption/des/des_handler.c
-SOURCES += parse/message_digest_parse.c parse/encoding_parse.c parse/encryption_parse.c parse/helper_mode.c
+SOURCES += parse/message_digest_parse.c parse/encoding_parse.c parse/encryption_parse.c parse/helper_parse.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
 
