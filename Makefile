@@ -9,11 +9,10 @@ SOURCES += free.c init.c error.c support_func.c
 SOURCES += message_digest/MD5/handle_md5.c message_digest/MD5/md5.c
 SOURCES += message_digest/SHA256/handle_sha256.c message_digest/SHA256/sha256.c
 SOURCES += encoding/base64/base64.c encoding/base64/base64_decode.c encoding/base64/base64_encode.c
-SOURCES += encryption/des/des.c encryption/des/des_handler.c
+SOURCES += encryption/DES/des.c encryption/DES/des_handler.c
 SOURCES += parse/message_digest_parse.c parse/encoding_parse.c parse/encryption_parse.c parse/helper_parse.c
 SOURCES := $(SOURCES:%.c=src/%.c)
 OBJECTS := $(SOURCES:src/%.c=obj/%.o)
-
 
 all: $(NAME)
 
