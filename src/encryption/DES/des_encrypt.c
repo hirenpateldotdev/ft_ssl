@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des.c                                           :+:      :+:    :+:   */
+/*   des_encrypt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hirenpat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,10 @@
 
 #include "des.h"
 
-int					des_handler(t_ssl *ssl, t_input **input)
+unsigned char	*des_encrypt_handler(unsigned char *s, int len)
 {
-    (void)ssl;
-    (void)input;
-	return (1);
+	(void)len;
+	// (void)x;
+	// (void)i;
+	return s;
 }

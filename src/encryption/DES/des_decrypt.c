@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   encryption.h                                       :+:      :+:    :+:   */
+/*   des_decrypt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hirenpat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ENCRYPTION_H
-# define FT_ENCRYPTION_H
-# include "../../inc/struct.h"
+#include "des.h"
 
-int					des_handler(t_ssl *ssl, t_input **input);
-
-#endif
+unsigned char	*des_decrypt_handler(unsigned char *s, int len)
+{
+	(void)len;
+	// (void)x;
+	// (void)i;
+	return s;
+}

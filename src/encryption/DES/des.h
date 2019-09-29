@@ -25,6 +25,8 @@
 # define LEFTROTATE(X, N) ((X << N) | (X >> (32 - N)))
 # define RIGHTROTATE(X, N) ((X >> N) | (X << (32 - N)))
 
+unsigned char			*des_decrypt_handler(unsigned char *s, int len);
+unsigned char			*des_encrypt_handler(unsigned char *s, int len);
 char					*des(uint8_t **blocks_arr, int arr_len);
 char					*des_hash(uint8_t *hash);
 #endif

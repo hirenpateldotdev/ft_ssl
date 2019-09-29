@@ -97,7 +97,15 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
-	ft_printf("parse over s : %s\n",INPUT->salt);
+	// ft_printf("parse over s : %s\n",INPUT->salt);
 	// ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,input[0]->output_file);
 	return ((has_error(ssl) == 1 ? -1 : 1 ));
 }
+
+
+
+
+
+
+
+
