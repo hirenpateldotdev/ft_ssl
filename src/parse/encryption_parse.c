@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   encryption_parse.c                                   :+:      :+:    :+:   */
+/*   encryption_parse.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hirenpat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -78,6 +78,8 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 	while (++i < arg_len)
 		if (arg[i][0] == '-' && arg[i][1] == 'd' && !arg[i][2])
 			ssl->mode = 1;
+		else if (!ft_strncmp(arg[i], "-nosalt", 7))
+			ssl->nosalt = 1;
 		else if (arg[i][0] == '-' && arg[i][1] == 'i' && !arg[i][2])
 			parse_input_file(arg, ++i, ssl, input);
 		else if (arg[i][0] == '-' && arg[i][1] == 'o' && !arg[i][2])
