@@ -10,22 +10,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "des.h"
+#include "../../inc/ft_ssl.h"
 
-void				get_pass(char **pass);
+int					get_pass(char **pass)
 {
-	char					*pass1;
-    char					*pass2;
+	char			*pass1;
+	char			*pass2;
 
-	pass1 = ft_strdup(getpass("Enter your password:"));
-	pass2 = ft_strdup(getpass("Verifying - Enter your password:"));
-	if (ft_strcmp(*pass, tmpa) != 0)
+	ft_printf("Enter your password:");
+	ft_read_fd(0, &pass1);
+	ft_printf("\nVerifying - Enter your password:");
+	ft_read_fd(0, &pass2);
+	ft_printf("\n");
+	if (ft_strcmp(pass1, pass2) != 0)
 	{
-		ft_putstr("Verify failure\nbad password read\n");
-		free(tmpa);
-		free(*pass);
-		free(file->data);
-		exit(0);
+		ft_printf("\nVerifying failure");
+		free(pass1);
+		free(pass2);
+		return(-1);
 	}
-	free(tmpa);
+	*pass = ft_strdup(pass1);
+	free(pass1);
+	free(pass2);
+	ft_printf("%s is the password\n",pass);
+	retrun(1);
 }

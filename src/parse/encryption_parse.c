@@ -16,6 +16,31 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input);
 int			parse_output_file(char **arg, int i, t_ssl *ssl, t_input **input);
 int			parse_stdin(t_ssl *ssl, t_input **input);
 
+int					get_pass(char **pass)
+{
+	char			*pass1;
+	char			*pass2;
+
+	ft_printf("Enter your password:");
+	ft_read_fd(0, &pass1);
+	ft_printf("\nVerifying - Enter your password:");
+	ft_read_fd(0, &pass2);
+	ft_printf("\n");
+	if (ft_strcmp(pass1, pass2) != 0)
+	{
+		ft_printf("\nVerifying failure");
+		free(pass1);
+		free(pass2);
+		return(-1);
+	}
+	*pass = ft_strdup(pass1);
+	free(pass1);
+	free(pass2);
+	ft_printf("%s is the password\n",*pass);
+	return(1);
+}
+
+
 int			parse_key(char **arg, int i, t_ssl *ssl, t_input **input)
 {
 	if (!arg[i])
@@ -99,6 +124,11 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
+	
+	if (ssl->p == 0)
+	{
+		get_pass(&INPUT->pass);
+	}
 	// ft_printf("parse over s : %s\n",INPUT->salt);
 	// ft_printf("\n\n__________\ninput : |%s|\n\noutput : |%d|\n",input[0]->content,input[0]->output_file);
 	return ((has_error(ssl) == 1 ? -1 : 1 ));

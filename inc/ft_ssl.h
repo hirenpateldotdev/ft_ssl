@@ -41,6 +41,7 @@ void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);
 
 int					usage(int x);
+int					get_pass(char **pass);
 int					invalid_flag(char *command, char invalid_flag);
 int					invalid_command(char *invalid_command);
 int					invalid_string(char *command);
