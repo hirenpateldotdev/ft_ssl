@@ -35,7 +35,7 @@ static const char	*g_flags[11] = {
 };
 
 
-int			has_error(t_ssl *ssl);
+int					has_error(t_ssl *ssl);
 
 void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);

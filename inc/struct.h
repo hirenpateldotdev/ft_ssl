@@ -77,9 +77,13 @@ typedef struct			s_input
 {
 	enum state			state;
 	int					output_file;
-	int					input_file;			
+	int					input_file;
 	int					type;
 	uint64_t			length;
+	char				key_buffer[49];
+	char				sub_key[3][17];
+	char				vector_buffer[17];
+	// unsigned long		vector;
 	char				*pass;
 	char				*salt;
 	char				*vector;
