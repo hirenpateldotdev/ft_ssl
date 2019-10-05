@@ -29,5 +29,7 @@ unsigned char			*des_decrypt_handler(unsigned char *s, int len);
 unsigned char			*des_encrypt_handler(unsigned char *s, int len);
 char					*des(uint8_t **blocks_arr, int arr_len);
 char					*des_hash(uint8_t *hash);
+void		    		check_hex(t_ssl *ssl, char *s);
+char		    		*get_input(char *prompt);
 
 #endif

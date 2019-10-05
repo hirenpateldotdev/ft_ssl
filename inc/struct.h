@@ -56,6 +56,22 @@ typedef struct			s_ssl {
 	int					pass;
 	int					key;
 	int					vector;
+
+	int					len;
+	int					encrypt;
+	int					base64;
+	unsigned char		*b64_s;
+	int					offset;
+	int					fd_in;
+	int					fd_out;
+	int					padded;
+	int					des_cbc;
+	// int					key_flag;
+	// int					iv_flag;
+	int					empty_read;
+	unsigned long long	des_key;
+	unsigned long long	des_iv;
+
 	int					current_input;
 	int					input_file;
 	int					output_file;
@@ -80,18 +96,28 @@ typedef struct			s_input
 	int					input_file;
 	int					type;
 	uint64_t			length;
-	char				key_buffer[49];
-	char				sub_key[3][17];
-	char				vector_buffer[17];
-	// unsigned long		vector;
-	char				*pass;
-	char				*salt;
-	char				*vector;
-	char				*key;
 	char				*descriptor;
 	char				*content;
 	char				*digest;
 	t_block				*b_p;
 }						t_input;
+
+// typedef struct		s_opt
+// {
+// 	int					len;
+// 	int					encrypt;
+// 	int					base64;
+// 	unsigned char		*b64_s;
+// 	int					offset;
+// 	int					fd_in;
+// 	int					fd_out;
+// 	int					padded;
+// 	int					des_cbc;
+// 	int					key_flag;
+// 	int					iv_flag;
+// 	int					empty_read;
+// 	unsigned long long	key;
+// 	unsigned long long	iv;
+// }					t_opt;
 
 #endif

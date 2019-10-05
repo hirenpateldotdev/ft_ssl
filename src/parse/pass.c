@@ -12,6 +12,9 @@
 
 #include "../../inc/ft_ssl.h"
 
+
+
+
 int					read_pass(char **pass)
 {
 	char			*pass1;
