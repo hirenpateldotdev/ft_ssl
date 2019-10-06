@@ -200,7 +200,7 @@ static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 
 int						des_handler(t_ssl *ssl, t_input **input)
 {
-	char				*output;
+	//char				*output;
 	// unsigned long long	s_blk;
 	uint64_t			i;
 	// int					j;
@@ -211,6 +211,7 @@ int						des_handler(t_ssl *ssl, t_input **input)
 		check_hex(ssl, get_input("Enter your initial vector: "));
 	i = 0;
 	set_subkeys(ssl);ft_printf("Sub Keys : ");while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
+	ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
 	while ((i < INPUT->length || (ssl->encrypt && ssl->padded == 0)))
 		valid_des(ssl, input, i, 0);
 

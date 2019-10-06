@@ -63,6 +63,7 @@ int					parse_encryption(t_ssl *ssl, t_input **input,
 		}
 	if (ssl->current_input == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
+	I_INPUT = 0;
 	// if (ssl->p == 0)
 	// 	read_pass(&INPUT->pass);
 	// ft_printf("parse over s : %s\n",INPUT->salt);
