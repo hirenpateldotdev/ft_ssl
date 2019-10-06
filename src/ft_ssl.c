@@ -21,8 +21,8 @@ int				dispatch(t_ssl *ssl, t_input **input)
 	handle[1] = sha256_handler;
 	handle[2] = base64_handler;
 	handle[3] = des_handler;
-	// handle[4] = des_ecb_handler;
-	// handle[5] = des_cbc_handler;
+	// handle[4] = des_handler;
+	// handle[5] = des_handler;
 	ret = handle[ssl->command](ssl, input);
 	return (ret);
 }

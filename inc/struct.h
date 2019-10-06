@@ -58,7 +58,7 @@ typedef struct			s_ssl {
 	int					vector;
 
 	int					len;
-	int					encrypt;
+	int					encrypt; 
 	int					base64;
 	unsigned char		*b64_s;
 	int					offset;
@@ -70,6 +70,7 @@ typedef struct			s_ssl {
 	// int					iv_flag;
 	int					empty_read;
 	unsigned long long	des_key;
+	unsigned long long	des_subkeys[16];
 	unsigned long long	des_iv;
 
 	int					current_input;
@@ -101,23 +102,5 @@ typedef struct			s_input
 	char				*digest;
 	t_block				*b_p;
 }						t_input;
-
-// typedef struct		s_opt
-// {
-// 	int					len;
-// 	int					encrypt;
-// 	int					base64;
-// 	unsigned char		*b64_s;
-// 	int					offset;
-// 	int					fd_in;
-// 	int					fd_out;
-// 	int					padded;
-// 	int					des_cbc;
-// 	int					key_flag;
-// 	int					iv_flag;
-// 	int					empty_read;
-// 	unsigned long long	key;
-// 	unsigned long long	iv;
-// }					t_opt;
 
 #endif

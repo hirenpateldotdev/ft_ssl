@@ -25,6 +25,7 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 		return (0);
 	}
 	INPUT->length = ft_read_fd(fd, &INPUT->content);
+	ssl->len = INPUT->length;
 	INPUT->type = FILE;
 	INPUT->descriptor = ft_strdup(arg[i]);
 	if (fd == 0)
