@@ -60,12 +60,9 @@ int			parse_stdin(t_ssl *ssl, t_input **input)
 	int		fd;
 
 	fd = 0;
-	ft_printf("reading : \n");
 	INPUT->length = ft_read_fd(fd, &INPUT->content);
 	INPUT->type = STDIN;
 	INPUT->descriptor = ft_strdup(INPUT->content);
-	ft_printf("\ncontent : |%s|\n",INPUT->content);
 	I_INPUT++;
-	
 	return (0);
 }

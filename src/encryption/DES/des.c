@@ -135,7 +135,8 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 
 static unsigned long long		des_decrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
-{ft_printf("des_decrypt_handler");
+{
+	// ft_printf("des_decrypt_handler");
 	unsigned long long	tmp_r;
 	unsigned long long	tmp_box;
 	unsigned long long	tmp_subkey;
@@ -164,7 +165,8 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 }
 
 static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long s_blk)
-{ft_printf("crypt_des\n");
+{
+	// ft_printf("crypt_des\n");
 	unsigned long long tmp;
 
 	tmp = s_blk;
@@ -182,7 +184,8 @@ static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long s_blk)
 }
 
 static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
-{ft_printf("valid_des\n");
+{
+	// ft_printf("valid_des\n");
 	unsigned long long		s_blk;
 
 	s_blk = 0;
@@ -209,12 +212,16 @@ int						des_handler(t_ssl *ssl, t_input **input)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)
 		check_hex(ssl, get_input("Enter your initial vector: "));
-	i = 0;
-	set_subkeys(ssl);ft_printf("Sub Keys : ");while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
+	set_subkeys(ssl);ft_printf("Sub Keys : ");i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
 	ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
+	ft_printf("\ndes start\n");
+	i = 0;
 	while ((i < INPUT->length || (ssl->encrypt && ssl->padded == 0)))
+	{
 		valid_des(ssl, input, i, 0);
-
+		i++;
+	}
+	ft_printf("\ndes over\n");
 
 	// if (ssl->mode == 0)
 	// 	output = (char *)des_encrypt_handler(
