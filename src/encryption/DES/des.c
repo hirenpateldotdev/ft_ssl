@@ -86,22 +86,22 @@ int		g_finalp[] = {40, 8, 48, 16, 56, 24, 64, 32,
 	34, 2, 42, 10, 50, 18, 58, 26,
 	33, 1, 41, 9, 49, 17, 57, 25};
 
-long long		ft_power(long long nbr, int power)
-{
-	if (power < 0)
-	{
-		return (0);
-	}
-	else if (power == 0)
-	{
-		return (1);
-	}
-	else if (power >= 2)
-	{
-		nbr *= ft_power(nbr, power - 1);
-	}
-	return (nbr);
-}
+// long long		ft_exponent(long long nbr, int power)
+// {
+// 	if (power < 0)
+// 	{
+// 		return (0);
+// 	}
+// 	else if (power == 0)
+// 	{
+// 		return (1);
+// 	}
+// 	else if (power >= 2)
+// 	{
+// 		nbr *= ft_exponent(nbr, power - 1);
+// 	}
+// 	return (nbr);
+// }
 
 static unsigned long long		des_encrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
@@ -127,7 +127,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 			row_col[1] = (tmp_subkey % 64) / 2 % 16;
 			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
 			tmp_box += g_sbx[row_col[0] + j * 4][row_col[1]]
-						* ft_power(16, 7 - j);
+						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
 		r = permutate(tmp_box, g_p, 32, 32) ^ tmp_l;
@@ -158,7 +158,7 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 			row_col[1] = (tmp_subkey % 64) / 2 % 16;
 			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
 			tmp_box += g_sbx[row_col[0] + j * 4][row_col[1]]
-						* ft_power(16, 7 - j);
+						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
 		l = permutate(tmp_box, g_p, 32, 32) ^ tmp_r;

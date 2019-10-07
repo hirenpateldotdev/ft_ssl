@@ -19,7 +19,7 @@ void		decryption_depadding(unsigned long long *block_s, int *len)
 	j = *block_s % 256;
 	if (j > 0 && j <= 8)
 	{
-		*block_s = (j == 8) ? 0 : *block_s / ft_power(256, j) * ft_power(256, j);
+		*block_s = (j == 8) ? 0 : *block_s / ft_exponent(256, j) * ft_exponent(256, j);
 		*len = 8 - j;
 	}
 }
@@ -41,7 +41,7 @@ void		des_processes(t_ssl *ssl, t_input **input, unsigned long long block_s)
 			ssl->des_iv = block_s;
 		j = 8;
 		while (--j >= 0)
-			blk[7 - j] = block_s / ft_power(256, j) % 256;
+			blk[7 - j] = block_s / ft_exponent(256, j) % 256;
 		(void)input;
 		ft_printf("output_file = %d | content = %s | len = %d\n",input[0]->output_file, blk, len);
 		write(input[0]->output_file, blk, len);

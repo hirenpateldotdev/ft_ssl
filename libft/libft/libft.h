@@ -29,6 +29,7 @@ typedef struct		s_list
 }					t_list;
 
 void				ft_bzero(void *str, size_t len);
+long long			ft_exponent(long long nbr, int power);
 void				*ft_memset(void *str, int c, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t len);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t len);
