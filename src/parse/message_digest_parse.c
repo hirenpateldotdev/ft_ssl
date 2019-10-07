@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/ft_ssl.h"
+#include "parse.h"
 
 int			parse_string_flag(char **arg, int i, t_ssl *ssl, t_input **input)
 {
@@ -74,8 +74,8 @@ int			parse_file(char **arg, int i, t_ssl *ssl, t_input **input)
 	return (0);
 }
 
-int					parse_message_digest(t_ssl *ssl, t_input **input,
-					int arg_len, char **arg)
+int			parse_message_digest(t_ssl *ssl, t_input **input,
+			int arg_len, char **arg)
 {
 	int i;
 

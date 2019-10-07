@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/ft_ssl.h"
+#include "parse.h"
 
 int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 {

@@ -136,7 +136,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 static unsigned long long		des_decrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
 {
-	// ft_printf("des_decrypt_handler");
+	ft_printf("des_decrypt_handler");
 	unsigned long long	tmp_r;
 	unsigned long long	tmp_box;
 	unsigned long long	tmp_subkey;
@@ -166,7 +166,7 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 
 static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long s_blk)
 {
-	// ft_printf("crypt_des\n");
+	ft_printf("crypt_des\n");
 	unsigned long long tmp;
 
 	tmp = s_blk;
@@ -185,7 +185,7 @@ static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long s_blk)
 
 static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 {
-	// ft_printf("valid_des\n");
+	ft_printf("valid_des\n");
 	unsigned long long		s_blk;
 
 	s_blk = 0;
