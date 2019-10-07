@@ -106,6 +106,7 @@ long long		ft_power(long long nbr, int power)
 static unsigned long long		des_encrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
 {
+
 	unsigned long long	tmp_l;
 	unsigned long long	tmp_box;
 	unsigned long long	tmp_subkey;
@@ -114,6 +115,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 
 	while (i++ < 16)
 	{
+		ft_printf("\nencrypt\n");
 		tmp_l = l;
 		l = r;
 		r = permutate(r, g_e, 48, 32);
@@ -136,7 +138,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 static unsigned long long		des_decrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
 {
-	ft_printf("des_decrypt_handler");
+	ft_printf("decrypt");
 	unsigned long long	tmp_r;
 	unsigned long long	tmp_box;
 	unsigned long long	tmp_subkey;
@@ -164,65 +166,67 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 	return (permutate(l * 4294967296 + r, g_finalp, 64, 64));
 }
 
-static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long s_blk)
+static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
 {
 	ft_printf("crypt_des\n");
 	unsigned long long tmp;
 
-	tmp = s_blk;
-	s_blk = permutate_choice_2(s_blk);
-	if (ssl->mode == 0)
-		s_blk = des_encrypt_handler(s_blk / 4294967296, s_blk % 4294967296, ssl->des_subkeys, 0);
+	tmp = block_s;
+	block_s = permutate_choice_2(block_s);
+	if (ssl->encrypt)
+		block_s = des_encrypt_handler(block_s / 4294967296, block_s % 4294967296, ssl->des_subkeys, 0);
 	else
-		s_blk = 0; des_decrypt_handler(s_blk % 4294967296, s_blk / 4294967296,  ssl->des_subkeys, 16);
+		block_s = des_decrypt_handler(block_s % 4294967296, block_s / 4294967296,  ssl->des_subkeys, 16);
 	if (ssl->des_cbc && !ssl->encrypt)
 	{
-		s_blk = s_blk ^ ssl->des_iv;
+		block_s = block_s ^ ssl->des_iv;
 		ssl->des_iv = tmp;
 	}
-	return (s_blk);
+	return (block_s);
 }
 
 static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 {
 	ft_printf("valid_des\n");
-	unsigned long long		s_blk;
+	unsigned long long		block_s;
 
-	s_blk = 0;
-	while (i < ssl->len && j++ < 8)
-		s_blk = s_blk * 256 + (unsigned char)INPUT->content[i++];
-	if (i == ssl->len && j < 8 && (ssl->padded = 8 - j))
+	while (i < (int)INPUT->length || (ssl->encrypt && ssl->padded == 0))
 	{
-		while (j++ < 8)
-		s_blk = s_blk * 256 + ssl->padded;
+		ft_printf("i = %d\n",i);
+		block_s = 0;
+		while (i < (int)INPUT->length && j++ < 8)
+			block_s = block_s * 256 + (unsigned char)INPUT->content[i++];
+		if (i == (int)INPUT->length && j < 8 && (ssl->padded = 8 - j))
+		{
+			while (j++ < 8)
+			block_s = block_s * 256 + ssl->padded;
+		}
+		(ssl->des_cbc && ssl->encrypt) ? block_s = block_s ^ ssl->des_iv : 0;
+		block_s = crypt_des(ssl, block_s);
+		des_processes(ssl, input, block_s);
 	}
-	(ssl->des_cbc && ssl->encrypt) ? s_blk = s_blk ^ ssl->des_iv : 0;
-	s_blk = crypt_des(ssl, s_blk);  
-	des_processes(ssl, input, s_blk);
 }
 
 int						des_handler(t_ssl *ssl, t_input **input)
 {
 	//char				*output;
-	// unsigned long long	s_blk;
-	uint64_t			i;
+	// unsigned long long	block_s;
+	// uint64_t			i;
 	// int					j;
 	
 	if (!ssl->key)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)
 		check_hex(ssl, get_input("Enter your initial vector: "));
-	set_subkeys(ssl);ft_printf("Sub Keys : ");i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
+	set_subkeys(ssl);ft_printf("Sub Keys : ");int i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
 	ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
-	ft_printf("\ndes start\n");
-	i = 0;
-	while ((i < INPUT->length || (ssl->encrypt && ssl->padded == 0)))
-	{
-		valid_des(ssl, input, i, 0);
-		i++;
-	}
-	ft_printf("\ndes over\n");
+	ft_printf("\n");
 
+	// while (i < INPUT->length || (ssl->encrypt && ssl->padded == 0))
+	// {
+	valid_des(ssl, input, 0, 0);
+	// 	// i++;
+	// }
 	// if (ssl->mode == 0)
 	// 	output = (char *)des_encrypt_handler(
 	// 				(unsigned char *)input[0]->content, input[0]->length);

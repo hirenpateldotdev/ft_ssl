@@ -182,6 +182,6 @@ unsigned long long		permutate_choice_3(unsigned long long p);
 unsigned long long		permutate(unsigned long long in, int *permutation,
 														int tab_size, int size);
 long long				ft_power(long long nbr, int power);
-void					des_processes(t_ssl *ssl, t_input **input, unsigned long long s_blk);
+void					des_processes(t_ssl *ssl, t_input **input, unsigned long long block_s);
 
 #endif
