@@ -15,9 +15,6 @@
 
 int			parse_key(char **arg, int i, t_ssl *ssl)
 {
-
-	// ft_printf("key trying to be enter = %s\n",arg[i]);
-	// ft_printf("\nprecase %d\n",!ssl->key);
 	check_hex(ssl, arg[i]);
 	ssl->key = 1;
 	return (1);
@@ -25,8 +22,8 @@ int			parse_key(char **arg, int i, t_ssl *ssl)
 
 int			parse_vector(char **arg, int i, t_ssl *ssl)
 {
-	ssl->vector = 1;
 	check_hex(ssl, arg[i]);
+	ssl->vector = 1;
 	return (1);
 }
 
