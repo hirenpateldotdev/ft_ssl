@@ -15,8 +15,11 @@
 
 int			parse_key(char **arg, int i, t_ssl *ssl)
 {
-	ssl->key = 1;
+
+	// ft_printf("key trying to be enter = %s\n",arg[i]);
+	// ft_printf("\nprecase %d\n",!ssl->key);
 	check_hex(ssl, arg[i]);
+	ssl->key = 1;
 	return (1);
 }
 

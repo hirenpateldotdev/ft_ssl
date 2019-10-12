@@ -91,12 +91,18 @@ void					check_hex(t_ssl *ssl, char *s)
 		}
 		i++;
 	}
+	// ft_printf("key = %d",ssl->key);
 	while (i++ < 16)
 		tmp *= 16;
+	// ft_printf("\ncase %d\n",!ssl->key);
 	if (!ssl->key && (ssl->key = 1))
+	{
+		// ft_printf("key is being set");
 		ssl->des_key = tmp;
+	}
 	else if (ssl->des_cbc && !ssl->vector && (ssl->vector = 1))
 		ssl->des_iv = tmp;
+	// ft_printf("\nssl->key is set to = %s\n",ssl->des_key);
 }
 
 char					*get_input(char *prompt)

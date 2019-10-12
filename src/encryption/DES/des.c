@@ -204,13 +204,15 @@ static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 
 int						des_handler(t_ssl *ssl, t_input **input)
 {
+
 	if (!ssl->key)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)
 		check_hex(ssl, get_input("Enter your initial vector: "));
-	set_subkeys(ssl);//ft_printf("Sub Keys : ");int i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
-	// ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
-	// ft_printf("\n");
+	ft_printf("\nssl->des_key = %d\n",ssl->des_key);
+	set_subkeys(ssl);ft_printf("Sub Keys : ");int i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
+	ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
+	ft_printf("\n");
 
 	valid_des(ssl, input, 0, 0);
 	if (input[0]->output_file == 0)

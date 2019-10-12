@@ -43,7 +43,7 @@ void		des_processes(t_ssl *ssl, t_input **input, unsigned long long block_s)
 		while (--j >= 0)
 			blk[7 - j] = block_s / ft_exponent(256, j) % 256;
 		(void)input;
-		ft_printf("output_file = %d | content = %s | len = %d\n",input[0]->output_file, blk, len);
+		ft_printf("\noutput_file = %d | content = %s | len = %d\n",input[0]->output_file, blk, len);
 		write(input[0]->output_file, blk, len);
 	}
 }
