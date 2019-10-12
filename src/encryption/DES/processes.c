@@ -30,7 +30,7 @@ void		des_processes(t_ssl *ssl, t_input **input, unsigned long long block_s)
 	int				j;
 	int				len;
 
-	ft_printf("des_processes\n");
+	// ft_printf("des_processes\n");
 	ft_bzero(blk, 9);
 	len = 8;
 	if (ssl->mode == 1)
