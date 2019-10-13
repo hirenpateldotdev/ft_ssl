@@ -56,7 +56,7 @@ typedef struct			s_ssl {
 	int					pass;
 	int					key;
 	int					vector;
-
+	int					input_found;
 	int					len;
 	int					encrypt; 
 	int					base64;

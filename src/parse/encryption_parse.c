@@ -50,7 +50,7 @@ int			parse_encryption(t_ssl *ssl, t_input **input,
 			SET_INVALID_FLAG;
 			invalid_flag(ssl->command_str, arg[i][1]);
 		}
-	if (ssl->current_input == 0 && has_error(ssl) != 1)
+	if ((!ssl->input_found && has_error(ssl) != 1))
 		parse_stdin(ssl, input);
 	I_INPUT = 0;
 	ssl->encrypt = ssl->mode == 0 ? 1 : 0;
