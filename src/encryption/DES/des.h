@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*https://www.techiedelight.com/des-implementation-c/*/
+
 #ifndef FT_DES_H
 # define FT_DES_H
 # include <stdlib.h>
@@ -32,12 +34,9 @@ unsigned long long		permutate_choice_4(unsigned long long in_1, unsigned long lo
 char					*des(uint8_t **blocks_arr,	int arr_len);
 char					*des_hash(uint8_t *hash);
 void					check_hex(t_ssl *ssl,	char *s);
-//key.c
 void					set_subkeys(t_ssl *ssl);
 void					check_hex(t_ssl *ssl,	char *s);
 char					*get_input(char *prompt);
-//permutate.c
-// static int				circular_swift(unsigned int num, int i);
 unsigned long long		permutate_choice_1(unsigned long long p);
 unsigned long long		permutate_choice_2(unsigned long long p);
 unsigned long long		permutate_choice_3(unsigned long long p);

@@ -39,7 +39,7 @@ int		g_p[] = {16, 7, 20, 21,
 	19, 13, 30, 6,
 	22, 11, 4, 25};
 
-int		g_finalp[] = {40, 8, 48, 16, 56, 24, 64, 32,
+int		g_fp[] = {40, 8, 48, 16, 56, 24, 64, 32,
 	39, 7, 47, 15, 55, 23, 63, 31,
 	38, 6, 46, 14, 54, 22, 62, 30,
 	37, 5, 45, 13, 53, 21, 61, 29,
@@ -121,7 +121,7 @@ unsigned long long		permutate_choice_4(unsigned long long in_1, unsigned long lo
 	i = 62;
 	while (i-- > 0)
 	{
-		if ((in >> (64 - g_finalp[i])) & 1)
+		if ((in >> (64 - g_fp[i])) & 1)
 			out = (unsigned long long)1 << (64 - 1 - i) | out;
 	}
 	return (out);
