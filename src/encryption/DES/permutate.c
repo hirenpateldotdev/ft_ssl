@@ -64,7 +64,6 @@ unsigned long long		permutate(unsigned long long in, int *permutation,
 	return (out);
 }
 
-
 unsigned long long		permutate_choice_1(unsigned long long in)
 {
 	unsigned long long	out;
@@ -110,9 +109,10 @@ unsigned long long		permutate_choice_3(unsigned long long in)
 	return (out);
 }
 
-unsigned long long		permutate_choice_4(unsigned long long in_1, unsigned long long in_2)
+unsigned long long		permutate_choice_4(unsigned long long in_1,\
+											unsigned long long in_2)
 {
-	unsigned long long in;
+	unsigned long long	in;
 	unsigned long long	out;
 	int					i;
 
