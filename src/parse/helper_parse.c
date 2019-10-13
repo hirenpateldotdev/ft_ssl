@@ -30,7 +30,7 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 	INPUT->descriptor = ft_strdup(arg[i]);
 	if (fd == 0)
 	{
-		ssl->input_found = 1;
+		ssl->in_file = 1;
 		INPUT->type = STDIN;
 		INPUT->descriptor = ft_strdup(INPUT->content);
 	}
