@@ -20,11 +20,11 @@ int			has_error(t_ssl *ssl)
 	while (++i < 5)
 	{
 		if (ssl->error[i] == 1)
-        {
-            ssl->valid = 0;
-            return (1);
-        }
+		{
+			ssl->valid = 0;
+			return (1);
+		}
 	}
-    ssl->valid = 1;
+	ssl->valid = 1;
 	return (0);
 }

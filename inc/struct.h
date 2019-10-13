@@ -35,7 +35,7 @@
 # define SET_INVALID_STRING ssl->error[2] = 1
 # define SET_INVALID_FLAG ssl->error[3] = 1
 
-enum state{encode, decode, none};
+enum					state {encode, decode, none};
 
 typedef struct			s_ssl {
 
@@ -58,7 +58,7 @@ typedef struct			s_ssl {
 	int					vector;
 	int					in_file;
 	int					len;
-	int					encrypt; 
+	int					encrypt;
 	int					base64;
 	unsigned char		*b64_s;
 	int					offset;
@@ -66,8 +66,6 @@ typedef struct			s_ssl {
 	int					fd_out;
 	int					padded;
 	int					des_cbc;
-	// int					key_flag;
-	// int					iv_flag;
 	int					empty_read;
 	unsigned long long	des_key;
 	unsigned long long	des_subkeys[16];
