@@ -50,6 +50,7 @@ int			parse_encryption(t_ssl *ssl, t_input **input,
 			SET_INVALID_FLAG;
 			invalid_flag(ssl->command_str, arg[i][1]);
 		}
+	//ft_printf("((%d && %d|| %d)\n file = %d\n",!ssl->current_input,has_error(ssl) != 1,ssl->in_file == 0,ssl->fd_in);
 	if ((!ssl->current_input && has_error(ssl) != 1) || ssl->in_file == 0)
 		parse_stdin(ssl, input);
 	I_INPUT = 0;
