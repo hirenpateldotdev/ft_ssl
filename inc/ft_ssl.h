@@ -17,12 +17,12 @@
 # include <unistd.h>
 # include "struct.h"
 # include "../libft/inc/ft_printf.h"
-#include "../src/message_digest/message_digest.h"
+# include "../src/message_digest/message_digest.h"
 
 static const int	g_valid_commands = 6;
 
 static const char	*g_command[6] = {
-	"md5", "sha256" ,
+	"md5", "sha256",
 	"base64", "des", "des_ecb", "des_cbc"
 };
 
@@ -34,25 +34,19 @@ static const char	*g_flags[11] = {
 	"-a", "-k", "-v"
 };
 
-
 int					has_error(t_ssl *ssl);
-
 void				free_structs(t_ssl *ssl, t_input **input);
 void				init_structs(t_ssl *ssl, t_input **input);
-
 int					usage(int x);
 int					get_pass(char **pass);
 int					invalid_flag(char *command, char invalid_flag);
 int					invalid_command(char *invalid_command);
 int					invalid_string(char *command);
 int					invalid_file(char *invalid_file, char *command_val);
-
 int					md5_handler(t_ssl	*ssl, t_input **input);
 int					sha256_handler(t_ssl	*ssl, t_input **input);
 int					base64_handler(t_ssl *ssl, t_input **input);
-
 int					base64_handler(t_ssl	*ssl, t_input **input);
-
 int					parse_message_digest(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
 int					parse_encoding(t_ssl *ssl, t_input **input,
@@ -60,6 +54,7 @@ int					parse_encoding(t_ssl *ssl, t_input **input,
 int					parse_encryption(t_ssl *ssl, t_input **input,
 					int arg_len, char **arg);
 int					des_handler(t_ssl	*ssl, t_input **input);
-// int					des_ecb_handler(t_ssl	*ssl, t_input **input);
-// int					des_cbc_handler(t_ssl	*ssl, t_input **input);
+/*
+int					des_cbc_handler(t_ssl	*ssl, t_input **input);
+*/
 #endif
