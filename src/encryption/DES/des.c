@@ -93,7 +93,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 
 	while (i++ < 16)
 	{
-		ft_printf("\nencrypt\n");
+		// ft_printf("\nencrypt\n");
 		tmp_l = l;
 		l = r;
 		r = permutate(r, g_e, 48, 32);
@@ -116,7 +116,7 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 static unsigned long long		des_decrypt_handler(unsigned long long l,
 					unsigned long long r, unsigned long long *subkeys, int i)
 {
-	ft_printf("decrypt");
+	// ft_printf("decrypt");
 	unsigned long long	tmp_r;
 	unsigned long long	tmp_box;
 	unsigned long long	tmp_subkey;
@@ -146,7 +146,7 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 
 static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
 {
-	ft_printf("crypt_des\n");
+	// ft_printf("crypt_des\n");
 	unsigned long long tmp;
 
 	tmp = block_s;
@@ -165,13 +165,13 @@ static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
 
 static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 {
-	ft_printf("valid_des\n");
+	// ft_printf("valid_des\n");
 	unsigned long long		block_s;
 
 	while (i < (int)INPUT->length || (ssl->encrypt && ssl->padded == 0))
 	{
 		j = 0;
-		ft_printf("i = %d\n",i);
+		// ft_printf("i = %d\n",i);
 		block_s = 0;
 		while (i < (int)INPUT->length && j++ < 8)
 			block_s = block_s * 256 + (unsigned char)INPUT->content[i++];
@@ -193,10 +193,10 @@ int						des_handler(t_ssl *ssl, t_input **input)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)
 		check_hex(ssl, get_input("Enter your initial vector: "));
-	ft_printf("\nssl->des_key = %d\n",ssl->des_key);
-	set_subkeys(ssl);ft_printf("Sub Keys : ");int i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
-	ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
-	ft_printf("\n");
+	// ft_printf("\nssl->des_key = %d\n",ssl->des_key);
+	set_subkeys(ssl);// ft_printf("Sub Keys : ");int i = 0;while (i < 16){ft_printf("|%llu|",ssl->des_subkeys[i]);i++;}ft_printf("\n");
+	// ft_printf("contant = %s | length = %d | encrypt = %d | padded = %d",INPUT->content ,INPUT->length, ssl->encrypt, ssl->padded);
+	// ft_printf("\n");
 	valid_des(ssl, input, 0, 0);
 	if (input[0]->output_file == 0)
 		ft_printf("\n");
