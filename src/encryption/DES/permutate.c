@@ -12,8 +12,6 @@
 
 #include "des.h"
 
-//permutate()
-
 unsigned long long		permutate(unsigned long long in, int *permutation,
 														int tab_size, int size)
 {
