@@ -96,8 +96,8 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 		// ft_printf("\nencrypt\n");
 		tmp_l = l;
 		l = r;
-		// r = permutate_choice_2(r);
-		r = permutate(r, g_e_2, 48, 32);
+		r = permutate_choice_2(r);
+		// r = permutate(r, g_e_2, 48, 32);
 		tmp_subkey = subkeys[i - 1] ^ r;
 		j = 8;
 		tmp_box = 0;
@@ -109,8 +109,8 @@ static unsigned long long		des_encrypt_handler(unsigned long long l,
 						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
-		r = permutate(tmp_box, g_p_2, 32, 32) ^ tmp_l;
-		// r = permutate_choice_3(tmp_box) ^ tmp_l;
+		// r = permutate(tmp_box, g_p_2, 32, 32) ^ tmp_l;
+		r = permutate_choice_3(tmp_box) ^ tmp_l;
 	}
 	return (permutate(r * 4294967296 + l, g_finalp_2, 64, 64));
 	// return (permutate_choice_4(r, l));
@@ -130,8 +130,8 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 	{
 		tmp_r = r;
 		r = l;
-		// l =  permutate_choice_2(l);
-		l =  permutate(l, g_e_2, 48, 32);
+		l =  permutate_choice_2(l);
+		// l =  permutate(l, g_e_2, 48, 32);
 		tmp_subkey = subkeys[i] ^ l;
 		j = 8;
 		tmp_box = 0;
@@ -143,8 +143,8 @@ static unsigned long long		des_decrypt_handler(unsigned long long l,
 						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
-		l = permutate(tmp_box, g_p_2, 32, 32) ^ tmp_r;
-		// l =  permutate_choice_3(tmp_box) ^ tmp_r;
+		// l = permutate(tmp_box, g_p_2, 32, 32) ^ tmp_r;
+		l =  permutate_choice_3(tmp_box) ^ tmp_r;
 	}
 	return (permutate(l * 4294967296 + r, g_finalp_2, 64, 64));
 	// return (permutate_choice_4(l, r));
@@ -156,8 +156,8 @@ static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
 	unsigned long long tmp;
 
 	tmp = block_s;
-	// block_s = permutate_choice_1(block_s);
-	block_s = permutate(block_s, g_ip_2, 64, 64);
+	block_s = permutate_choice_1(block_s);
+	// block_s = permutate(block_s, g_ip_2, 64, 64);
 	if (ssl->encrypt)
 		block_s = des_encrypt_handler(block_s / 4294967296, block_s % 4294967296, ssl->des_subkeys, 0);
 	else
