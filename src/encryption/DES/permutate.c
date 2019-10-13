@@ -118,7 +118,7 @@ unsigned long long		permutate_choice_4(unsigned long long in_1, unsigned long lo
 
 	in = in_1 * 4294967296 + in_2;
 	out = 0;
-	i = 62;
+	i = 64;
 	while (i-- > 0)
 	{
 		if ((in >> (64 - g_fp[i])) & 1)
