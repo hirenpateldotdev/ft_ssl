@@ -18,7 +18,8 @@
 # include "../../../inc/struct.h"
 # include "../../../libft/inc/ft_printf.h"
 
-static const char	g_b[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const char	g_b[64] = \
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 int					base64_handler(t_ssl *ssl, t_input **input);
 unsigned char		*base64_encode_handler(unsigned char *s, int len);

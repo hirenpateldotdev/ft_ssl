@@ -12,9 +12,9 @@
 
 #include "base64.h"
 
-int				find_chr(char c)
+int					find_chr(char c)
 {
-	size_t		i;
+	size_t			i;
 
 	i = 0;
 	while (i < 64)
@@ -26,7 +26,7 @@ int				find_chr(char c)
 	return (0);
 }
 
-void			loop(unsigned char *s, unsigned char *n, int x, int i)
+void				loop(unsigned char *s, unsigned char *n, int x, int i)
 {
 	unsigned int	tmp;
 
@@ -44,7 +44,7 @@ void			loop(unsigned char *s, unsigned char *n, int x, int i)
 	n[x + 2] = (tmp >> 8) & 255;
 }
 
-unsigned char	*base64_decode(int len, int i, int x, unsigned char *s)
+unsigned char		*base64_decode(int len, int i, int x, unsigned char *s)
 {
 	unsigned char	*n;
 	static int		neg;

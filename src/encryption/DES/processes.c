@@ -19,7 +19,8 @@ void		decryption_depadding(unsigned long long *block_s, int *len)
 	j = *block_s % 256;
 	if (j > 0 && j <= 8)
 	{
-		*block_s = (j == 8) ? 0 : *block_s / ft_exponent(256, j) * ft_exponent(256, j);
+		*block_s = (j == 8) ? 0 : *block_s / ft_exponent(256, j) * \
+											ft_exponent(256, j);
 		*len = 8 - j;
 	}
 }

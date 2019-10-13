@@ -21,13 +21,13 @@ int				dispatch(t_ssl *ssl, t_input **input)
 	handle[1] = sha256_handler;
 	handle[2] = base64_handler;
 	handle[3] = des_handler;
-	// handle[4] = des_handler;
+	handle[4] = des_handler;
 	// handle[5] = des_handler;
 	ret = handle[ssl->command](ssl, input);
 	return (ret);
 }
 
-int			parse_command(char *arg, t_ssl *ssl, t_input **input)
+int				parse_command(char *arg, t_ssl *ssl, t_input **input)
 {
 	(void)input;
 	ssl->command_str = arg;
@@ -37,7 +37,7 @@ int			parse_command(char *arg, t_ssl *ssl, t_input **input)
 	return (0);
 }
 
-int			parse_arguments(t_ssl *ssl, t_input **input,
+int				parse_arguments(t_ssl *ssl, t_input **input,
 							int arg_len, char **arg)
 {
 	if (arg_len < 2)

@@ -21,7 +21,7 @@ int		g_pc1[] = {57, 49, 41, 33, 25, 17, 9,
 	14, 6, 61, 53, 45, 37, 29,
 	21, 13, 5, 28, 20, 12, 4};
 
-int		g_rot[] = {1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
+// int		g_rot[] = {1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
 
 int		g_pc2[] = {14, 17, 11, 24, 1, 5,
 	3, 28, 15, 6, 21, 10,
@@ -90,19 +90,13 @@ void					check_hex(t_ssl *ssl, char *s)
 			exit(1);
 		}
 		i++;
-	}
-	// ft_printf("key = %d",ssl->key);
+	}// ft_printf("key = %d",ssl->key);
 	while (i++ < 16)
-		tmp *= 16;
-	// ft_printf("\ncase %d\n",!ssl->key);
+		tmp *= 16;// ft_printf("\ncase %d\n",!ssl->key);
 	if (!ssl->key && (ssl->key = 1))
-	{
-		// ft_printf("key is being set");
-		ssl->des_key = tmp;
-	}
+		ssl->des_key = tmp;// ft_printf("key is being set");
 	else if (ssl->des_cbc && !ssl->vector && (ssl->vector = 1))
-		ssl->des_iv = tmp;
-	// ft_printf("\nssl->key is set to = %s\n",ssl->des_key);
+		ssl->des_iv = tmp;//ft_printf("\nssl->key is set to = %s\n",ssl->des_key);
 }
 
 char					*get_input(char *prompt)

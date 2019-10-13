@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*https://www.techiedelight.com/des-implementation-c/*/
+/*
+https://www.techiedelight.com/des-implementation-c/
+*/
 
 #ifndef FT_DES_H
 # define FT_DES_H
@@ -27,22 +29,24 @@
 # define LEFTROTATE(X,	N) ((X << N) | (X >> (32 - N)))
 # define RIGHTROTATE(X,	N) ((X >> N) | (X << (32 - N)))
 
+unsigned long long		permutate(unsigned long long in, int *permutation,
+														int tab_size, int size);
 unsigned long long		permutate_choice_1(unsigned long long in);
 unsigned long long		permutate_choice_2(unsigned long long in);
 unsigned long long		permutate_choice_3(unsigned long long in);
-unsigned long long		permutate_choice_4(unsigned long long in_1, unsigned long long in_2);
-char					*des(uint8_t **blocks_arr,	int arr_len);
+unsigned long long		permutate_choice_4(unsigned long long in_1,\
+											unsigned long long in_2);
+char					*des(uint8_t **blocks_arr, int arr_len);
 char					*des_hash(uint8_t *hash);
-void					check_hex(t_ssl *ssl,	char *s);
+void					check_hex(t_ssl *ssl, char *s);
 void					set_subkeys(t_ssl *ssl);
-void					check_hex(t_ssl *ssl,	char *s);
+void					check_hex(t_ssl *ssl, char *s);
 char					*get_input(char *prompt);
 unsigned long long		permutate_choice_1(unsigned long long p);
 unsigned long long		permutate_choice_2(unsigned long long p);
 unsigned long long		permutate_choice_3(unsigned long long p);
-unsigned long long		permutate(unsigned long long in, int *permutation,
-														int tab_size, int size);
 long long				ft_exponent(long long nbr, int power);
-void					des_processes(t_ssl *ssl, t_input **input, unsigned long long block_s);
+void					des_processes(t_ssl *ssl, t_input **input,\
+										unsigned long long block_s);
 
 #endif
