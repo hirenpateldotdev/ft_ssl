@@ -22,7 +22,7 @@ int				dispatch(t_ssl *ssl, t_input **input)
 	handle[2] = base64_handler;
 	handle[3] = des_handler;
 	handle[4] = des_handler;
-	// handle[5] = des_handler;
+	handle[5] = des_handler;
 	ret = handle[ssl->command](ssl, input);
 	return (ret);
 }
@@ -44,6 +44,9 @@ int				parse_arguments(t_ssl *ssl, t_input **input,
 		return (usage(SET_NO_ARG));
 	else if (parse_command(arg[1], ssl, input) == -1)
 		return (invalid_command(ssl->command_str));
+	if (ssl->command == 5)
+		ssl->des_cbc = 1;
+	ft_printf("\ncbc = %d | com = %d\n",ssl->des_cbc,ssl->command);
 	if (ssl->command >= 0 && ssl->command <= 1)
 		return (parse_message_digest(ssl, input, arg_len, arg));
 	else if (ssl->command == 2)

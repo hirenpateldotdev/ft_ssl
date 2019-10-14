@@ -140,7 +140,8 @@ static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 			while (j++ < 8)
 				block_s = block_s * 256 + ssl->padded;
 		}
-		(ssl->des_cbc && ssl->encrypt) ? block_s = block_s ^ ssl->des_iv : 0;
+		if (ssl->des_cbc && ssl->encrypt)
+			block_s = block_s ^ ssl->des_iv;
 		block_s = crypt_des(ssl, block_s);
 		des_processes(ssl, input, block_s);
 	}
@@ -148,6 +149,7 @@ static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 
 int							des_handler(t_ssl *ssl, t_input **input)
 {
+	ft_printf("\ndes_handler\n");
 	if (!ssl->key)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)

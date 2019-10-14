@@ -1,6 +1,6 @@
 NAME = ft_ssl
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 LIBFT = libft
 HEADER = inc/ft_ssl.h src/message_digest/message_digest.h src/encoding/encoding.h src/encryption/encryption.h
 LIBFT_HEADER = libft/ft_printf.h
