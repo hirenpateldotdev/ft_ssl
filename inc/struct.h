@@ -66,16 +66,14 @@ typedef struct			s_ssl {
 	int					fd_out;
 	int					padded;
 	int					des_cbc;
-	int					empty_read;
-	unsigned long long	des_key;
-	unsigned long long	des_subkeys[16];
-	unsigned long long	des_iv;
-
 	int					current_input;
 	int					input_file;
 	int					output_file;
 	int					error[5];
 	int					valid;
+	unsigned long long	des_key;
+	unsigned long long	des_subkeys[16];
+	unsigned long long	des_iv;
 }						t_ssl;
 
 typedef struct			s_block

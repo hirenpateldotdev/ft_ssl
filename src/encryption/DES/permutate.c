@@ -48,22 +48,6 @@ int		g_fp[] = {40, 8, 48, 16, 56, 24, 64, 32,
 	34, 2, 42, 10, 50, 18, 58, 26,
 	33, 1, 41, 9, 49, 17, 57, 25};
 
-unsigned long long		permutate(unsigned long long in, int *permutation,
-														int tab_size, int size)
-{
-	unsigned long long	out;
-	int					i;
-
-	out = 0;
-	i = tab_size;
-	while (i-- > 0)
-	{
-		if ((in >> (size - permutation[i])) & 1)
-			out = (unsigned long long)1 << (tab_size - 1 - i) | out;
-	}
-	return (out);
-}
-
 unsigned long long		permutate_choice_1(unsigned long long in)
 {
 	unsigned long long	out;

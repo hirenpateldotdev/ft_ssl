@@ -12,7 +12,7 @@
 
 #include "des.h"
 
-int		g_s[32][16] = {{14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
+int	g_sbox[32][16] = {{14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
 	{0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8},
 	{4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0},
 	{15, 12, 8, 2, 4, 9, 1, 7, 5, 11, 3, 14, 10, 0, 6, 13},
@@ -66,7 +66,7 @@ static unsigned long long	des_encrypt_handler(unsigned long long l,
 		{
 			row_col[1] = (tmp_subkey % 64) / 2 % 16;
 			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
-			tmp_box += g_s[row_col[0] + j * 4][row_col[1]]
+			tmp_box += g_sbox[row_col[0] + j * 4][row_col[1]]
 						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
@@ -96,7 +96,7 @@ static unsigned long long	des_decrypt_handler(unsigned long long l,
 		{
 			row_col[1] = (tmp_subkey % 64) / 2 % 16;
 			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
-			tmp_box += g_s[row_col[0] + j * 4][row_col[1]]
+			tmp_box += g_sbox[row_col[0] + j * 4][row_col[1]]
 						* ft_exponent(16, 7 - j);
 			tmp_subkey /= 64;
 		}
