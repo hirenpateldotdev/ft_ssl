@@ -12,13 +12,13 @@
 
 #include "des.h"
 
-int g_shifts[] =	{ 1, 1, 2, 2, 2, 2, 2, 2,
-					1, 2, 2, 2, 2, 2, 2, 1 };
+int g_shifts[] = { 1, 1, 2, 2, 2, 2, 2, 2,
+	1, 2, 2, 2, 2, 2, 2, 1 };
 
-static int				circular_swift(unsigned int num, int i)
+static int			circular_swift(unsigned int num, int i)
 {
-	int					dropped;
-	int					rot;
+	int				dropped;
+	int				rot;
 
 	rot = 0;
 	while (rot < g_shifts[i])
@@ -31,11 +31,11 @@ static int				circular_swift(unsigned int num, int i)
 	return (num);
 }
 
-void					set_subkeys(t_ssl *ssl)
+void				set_subkeys(t_ssl *ssl)
 {
-	unsigned int		c;
-	unsigned int		d;
-	int					i;
+	unsigned int	c;
+	unsigned int	d;
+	int				i;
 
 	i = 0;
 	ssl->des_key = permutate_choice_5(ssl->des_key, 0);
@@ -51,10 +51,10 @@ void					set_subkeys(t_ssl *ssl)
 	}
 }
 
-void					check_hex(t_ssl *ssl, char *s)
+void				check_hex(t_ssl *ssl, char *s)
 {
-	int					i;
-	uint64_t	tmp;
+	int				i;
+	uint64_t		tmp;
 
 	i = 0;
 	while (s[i] != '\0' && i < 16)
@@ -80,10 +80,10 @@ void					check_hex(t_ssl *ssl, char *s)
 		ssl->des_iv = tmp;
 }
 
-char					*get_input(char *prompt)
+char				*get_input(char *prompt)
 {
-	char				*pass1;
-	char				*pass2;
+	char			*pass1;
+	char			*pass2;
 
 	ft_printf("\n%s", prompt);
 	ft_read_fd(0, &pass1);

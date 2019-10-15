@@ -14,7 +14,7 @@
 
 int			has_error(t_ssl *ssl)
 {
-	int i;
+	int		i;
 
 	i = -1;
 	while (++i < 5)

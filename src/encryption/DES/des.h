@@ -10,10 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-https://www.techiedelight.com/des-implementation-c/
-*/
-
 #ifndef FT_DES_H
 # define FT_DES_H
 # include <stdlib.h>
@@ -39,14 +35,13 @@ uint64_t		permutate_choice_3(uint64_t in);
 uint64_t		permutate_choice_4(uint64_t in_1,\
 											uint64_t in_2);
 uint64_t		permutate_choice_5(uint64_t in, int option);
-char					*des(uint8_t **blocks_arr, int arr_len);
-char					*des_hash(uint8_t *hash);
-void					check_hex(t_ssl *ssl, char *s);
-void					set_subkeys(t_ssl *ssl);
-void					check_hex(t_ssl *ssl, char *s);
-char					*get_input(char *prompt);
-long long				ft_exponent(long long nbr, int power);
-void					des_processes(t_ssl *ssl, t_input **input,\
-										uint64_t block_s);
+char			*des(uint8_t **blocks_arr, int arr_len);
+char			*des_hash(uint8_t *hash);
+void			check_hex(t_ssl *ssl, char *s);
+void			set_subkeys(t_ssl *ssl);
+void			check_hex(t_ssl *ssl, char *s);
+char			*get_input(char *prompt);
+void			des_processes(t_ssl *ssl, t_input **input,\
+							uint64_t block_s);
 
 #endif

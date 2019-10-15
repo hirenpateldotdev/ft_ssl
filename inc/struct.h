@@ -35,7 +35,7 @@
 # define SET_INVALID_STRING ssl->error[2] = 1
 # define SET_INVALID_FLAG ssl->error[3] = 1
 
-enum					state {encode, decode, none};
+enum					e_state {encode, decode, none};
 
 typedef struct			s_ssl {
 
@@ -88,7 +88,7 @@ typedef struct			s_block
 
 typedef struct			s_input
 {
-	enum state			state;
+	enum e_state		state;
 	int					output_file;
 	int					input_file;
 	int					type;

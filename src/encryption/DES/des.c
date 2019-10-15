@@ -45,14 +45,14 @@ int	g_sbox[32][16] = {{14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
 	{7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8},
 	{2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11}};
 
-static uint64_t	des_encrypt_handler(uint64_t l,
+static uint64_t		des_encrypt_handler(uint64_t l,
 					uint64_t r, uint64_t *subkeys, int i)
 {
 	uint64_t		t_l;
 	uint64_t		t_b;
 	uint64_t		t_sk;
-	int						z[2];
-	int						j;
+	int				z[2];
+	int				j;
 
 	while (i++ < 16)
 	{
@@ -75,14 +75,14 @@ static uint64_t	des_encrypt_handler(uint64_t l,
 	return (permutate_choice_4(r, l));
 }
 
-static uint64_t	des_decrypt_handler(uint64_t l,
+static uint64_t		des_decrypt_handler(uint64_t l,
 					uint64_t r, uint64_t *subkeys, int i)
 {
 	uint64_t		t_r;
 	uint64_t		t_b;
 	uint64_t		t_sk;
-	int						z[2];
-	int						j;
+	int				z[2];
+	int				j;
 
 	while (--i >= 0)
 	{
@@ -105,7 +105,7 @@ static uint64_t	des_decrypt_handler(uint64_t l,
 	return (permutate_choice_4(l, r));
 }
 
-static uint64_t	crypt_des(t_ssl *ssl, uint64_t block_s)
+static uint64_t		crypt_des(t_ssl *ssl, uint64_t block_s)
 {
 	uint64_t		tmp;
 
@@ -125,7 +125,7 @@ static uint64_t	crypt_des(t_ssl *ssl, uint64_t block_s)
 	return (block_s);
 }
 
-static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
+static void			valid_des(t_ssl *ssl, t_input **input, int i, int j)
 {
 	uint64_t		block_s;
 
@@ -147,7 +147,7 @@ static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 	}
 }
 
-int							des_handler(t_ssl *ssl, t_input **input)
+int					des_handler(t_ssl *ssl, t_input **input)
 {
 	ft_printf("\ndes_handler\n");
 	if (!ssl->key)

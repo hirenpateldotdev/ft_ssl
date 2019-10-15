@@ -14,24 +14,24 @@
 
 void		decryption_depadding(uint64_t *block_s, int *len)
 {
-	int	j;
+	int		j;
 
 	j = *block_s % 256;
 	if (j > 0 && j <= 8)
 	{
-		*block_s = (j == 8) ? 0 : *block_s / ft_exponent(256, j) * \
+		*block_s = (j == 8) ? 0 : *block_s / ft_exponent(256, j) *\
 											ft_exponent(256, j);
 		*len = 8 - j;
 	}
 }
 
-void		des_processes(t_ssl *ssl, t_input **input, \
+void		des_processes(t_ssl *ssl, t_input **input,\
 						uint64_t block_s)
 {
 	unsigned char	blk[9];
 	int				j;
 	int				len;
-	
+
 	ft_bzero(blk, 9);
 	len = 8;
 	if (ssl->mode == 1)

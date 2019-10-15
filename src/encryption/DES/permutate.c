@@ -48,7 +48,7 @@ int		g_fp[] = {40, 8, 48, 16, 56, 24, 64, 32,
 	34, 2, 42, 10, 50, 18, 58, 26,
 	33, 1, 41, 9, 49, 17, 57, 25};
 
-int		g_pc2[] =	{14, 17, 11, 24, 1, 5,
+int		g_pc2[] = {14, 17, 11, 24, 1, 5,
 	3, 28, 15, 6, 21, 10,
 	23, 19, 12, 4, 26, 8,
 	16, 7, 27, 20, 13, 2,
@@ -57,7 +57,7 @@ int		g_pc2[] =	{14, 17, 11, 24, 1, 5,
 	44, 49, 39, 56, 34, 53,
 	46, 42, 50, 36, 29, 32};
 
-int		g_pc1[] =	{57, 49, 41, 33, 25, 17, 9,
+int		g_pc1[] = {57, 49, 41, 33, 25, 17, 9,
 	1, 58, 50, 42, 34, 26, 18,
 	10, 2, 59, 51, 43, 35, 27,
 	19, 11, 3, 60, 52, 44, 36,
@@ -66,11 +66,10 @@ int		g_pc1[] =	{57, 49, 41, 33, 25, 17, 9,
 	14, 6, 61, 53, 45, 37, 29,
 	21, 13, 5, 28, 20, 12, 4};
 
-
 uint64_t		permutate_choice_1(uint64_t in)
 {
 	uint64_t	out;
-	int					i;
+	int			i;
 
 	out = 0;
 	i = 64;
@@ -85,7 +84,7 @@ uint64_t		permutate_choice_1(uint64_t in)
 uint64_t		permutate_choice_2(uint64_t in)
 {
 	uint64_t	out;
-	int					i;
+	int			i;
 
 	out = 0;
 	i = 48;
@@ -100,7 +99,7 @@ uint64_t		permutate_choice_2(uint64_t in)
 uint64_t		permutate_choice_3(uint64_t in)
 {
 	uint64_t	out;
-	int					i;
+	int			i;
 
 	out = 0;
 	i = 32;
@@ -117,7 +116,7 @@ uint64_t		permutate_choice_4(uint64_t in_1,\
 {
 	uint64_t	in;
 	uint64_t	out;
-	int					i;
+	int			i;
 
 	in = in_1 * 4294967296 + in_2;
 	out = 0;
@@ -131,9 +130,9 @@ uint64_t		permutate_choice_4(uint64_t in_1,\
 }
 
 uint64_t		permutate_choice_5(uint64_t in, int option)
-{	
-	uint64_t	out;	
-	int					i;	
+{
+	uint64_t	out;
+	int			i;
 
 	out = 0;
 	if (option == 1)
@@ -146,11 +145,11 @@ uint64_t		permutate_choice_5(uint64_t in, int option)
 		}
 		return (out);
 	}
-	i = 56;	
+	i = 56;
 	while (i-- > 0)
 	{
 		if ((in >> (64 - g_pc1[i])) & 1)
 			out = (uint64_t)1 << (56 - 1 - i) | out;
-	}	
+	}
 	return (out);
 }
