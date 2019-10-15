@@ -67,9 +67,9 @@ int		g_pc1[] =	{57, 49, 41, 33, 25, 17, 9,
 	21, 13, 5, 28, 20, 12, 4};
 
 
-unsigned long long		permutate_choice_1(unsigned long long in)
+uint64_t		permutate_choice_1(uint64_t in)
 {
-	unsigned long long	out;
+	uint64_t	out;
 	int					i;
 
 	out = 0;
@@ -77,14 +77,14 @@ unsigned long long		permutate_choice_1(unsigned long long in)
 	while (i-- > 0)
 	{
 		if ((in >> (64 - g_ip[i])) & 1)
-			out = (unsigned long long)1 << (64 - 1 - i) | out;
+			out = (uint64_t)1 << (64 - 1 - i) | out;
 	}
 	return (out);
 }
 
-unsigned long long		permutate_choice_2(unsigned long long in)
+uint64_t		permutate_choice_2(uint64_t in)
 {
-	unsigned long long	out;
+	uint64_t	out;
 	int					i;
 
 	out = 0;
@@ -92,14 +92,14 @@ unsigned long long		permutate_choice_2(unsigned long long in)
 	while (i-- > 0)
 	{
 		if ((in >> (32 - g_e[i])) & 1)
-			out = (unsigned long long)1 << (48 - 1 - i) | out;
+			out = (uint64_t)1 << (48 - 1 - i) | out;
 	}
 	return (out);
 }
 
-unsigned long long		permutate_choice_3(unsigned long long in)
+uint64_t		permutate_choice_3(uint64_t in)
 {
-	unsigned long long	out;
+	uint64_t	out;
 	int					i;
 
 	out = 0;
@@ -107,16 +107,16 @@ unsigned long long		permutate_choice_3(unsigned long long in)
 	while (i-- > 0)
 	{
 		if ((in >> (32 - g_p[i])) & 1)
-			out = (unsigned long long)1 << (32 - 1 - i) | out;
+			out = (uint64_t)1 << (32 - 1 - i) | out;
 	}
 	return (out);
 }
 
-unsigned long long		permutate_choice_4(unsigned long long in_1,\
-											unsigned long long in_2)
+uint64_t		permutate_choice_4(uint64_t in_1,\
+											uint64_t in_2)
 {
-	unsigned long long	in;
-	unsigned long long	out;
+	uint64_t	in;
+	uint64_t	out;
 	int					i;
 
 	in = in_1 * 4294967296 + in_2;
@@ -125,14 +125,14 @@ unsigned long long		permutate_choice_4(unsigned long long in_1,\
 	while (i-- > 0)
 	{
 		if ((in >> (64 - g_fp[i])) & 1)
-			out = (unsigned long long)1 << (64 - 1 - i) | out;
+			out = (uint64_t)1 << (64 - 1 - i) | out;
 	}
 	return (out);
 }
 
-unsigned long long		permutate_choice_5(unsigned long long in, int option)
+uint64_t		permutate_choice_5(uint64_t in, int option)
 {	
-	unsigned long long	out;	
+	uint64_t	out;	
 	int					i;	
 
 	out = 0;
@@ -142,7 +142,7 @@ unsigned long long		permutate_choice_5(unsigned long long in, int option)
 		while (i-- > 0)
 		{
 			if ((in >> (56 - g_pc2[i])) & 1)
-				out = (unsigned long long)1 << (48 - 1 - i) | out;
+				out = (uint64_t)1 << (48 - 1 - i) | out;
 		}
 		return (out);
 	}
@@ -150,7 +150,7 @@ unsigned long long		permutate_choice_5(unsigned long long in, int option)
 	while (i-- > 0)
 	{
 		if ((in >> (64 - g_pc1[i])) & 1)
-			out = (unsigned long long)1 << (56 - 1 - i) | out;
+			out = (uint64_t)1 << (56 - 1 - i) | out;
 	}	
 	return (out);
 }

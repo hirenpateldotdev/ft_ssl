@@ -12,24 +12,6 @@
 
 #include "des.h"
 
-// int		g_pc1[] =	{57, 49, 41, 33, 25, 17, 9,
-// 					1, 58, 50, 42, 34, 26, 18,
-// 					10, 2, 59, 51, 43, 35, 27,
-// 					19, 11, 3, 60, 52, 44, 36,
-// 					63, 55, 47, 39, 31, 23, 15,
-// 					7, 62, 54, 46, 38, 30, 22,
-// 					14, 6, 61, 53, 45, 37, 29,
-// 					21, 13, 5, 28, 20, 12, 4};
-
-// int		g_pc2[] =	{14, 17, 11, 24, 1, 5,
-// 					3, 28, 15, 6, 21, 10,
-// 					23, 19, 12, 4, 26, 8,
-// 					16, 7, 27, 20, 13, 2,
-// 					41, 52, 31, 37, 47, 55,
-// 					30, 40, 51, 45, 33, 48,
-// 					44, 49, 39, 56, 34, 53,
-// 					46, 42, 50, 36, 29, 32};
-
 int g_shifts[] =	{ 1, 1, 2, 2, 2, 2, 2, 2,
 					1, 2, 2, 2, 2, 2, 2, 1 };
 
@@ -45,7 +27,7 @@ static int				circular_swift(unsigned int num, int i)
 		num = (num << 1) | dropped;
 		rot++;
 	}
-	num %= 268435456;
+	num %= B28;
 	return (num);
 }
 
@@ -57,13 +39,13 @@ void					set_subkeys(t_ssl *ssl)
 
 	i = 0;
 	ssl->des_key = permutate_choice_5(ssl->des_key, 0);
-	c = ssl->des_key / 268435456;
-	d = ssl->des_key % 268435456;
+	c = ssl->des_key / B28;
+	d = ssl->des_key % B28;
 	while (i < 16)
 	{
 		c = circular_swift(c, i);
 		d = circular_swift(d, i);
-		ssl->des_subkeys[i] = (unsigned long long)(c) * 268435456 + d;
+		ssl->des_subkeys[i] = (uint64_t)(c) * B28 + d;
 		ssl->des_subkeys[i] = permutate_choice_5(ssl->des_subkeys[i], 1);
 		i++;
 	}
@@ -72,7 +54,7 @@ void					set_subkeys(t_ssl *ssl)
 void					check_hex(t_ssl *ssl, char *s)
 {
 	int					i;
-	unsigned long long	tmp;
+	uint64_t	tmp;
 
 	i = 0;
 	while (s[i] != '\0' && i < 16)
@@ -85,7 +67,7 @@ void					check_hex(t_ssl *ssl, char *s)
 			tmp = tmp * 16 + (10 + s[i] - 'A');
 		else
 		{
-			ft_printf("Error, enter hex digit");
+			ft_printf("Error, enter hex digits");
 			exit(1);
 		}
 		i++;

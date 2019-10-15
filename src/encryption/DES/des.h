@@ -28,15 +28,17 @@ https://www.techiedelight.com/des-implementation-c/
 # define S_I input
 # define LEFTROTATE(X,	N) ((X << N) | (X >> (32 - N)))
 # define RIGHTROTATE(X,	N) ((X >> N) | (X << (32 - N)))
+# define B6 64
+# define B8 256
+# define B28 268435456
+# define B32 4294967296
 
-// unsigned long long		permutate(unsigned long long in, int *permutation,
-// 														int tab_size, int size);
-unsigned long long		permutate_choice_1(unsigned long long in);
-unsigned long long		permutate_choice_2(unsigned long long in);
-unsigned long long		permutate_choice_3(unsigned long long in);
-unsigned long long		permutate_choice_4(unsigned long long in_1,\
-											unsigned long long in_2);
-unsigned long long		permutate_choice_5(unsigned long long in, int option);
+uint64_t		permutate_choice_1(uint64_t in);
+uint64_t		permutate_choice_2(uint64_t in);
+uint64_t		permutate_choice_3(uint64_t in);
+uint64_t		permutate_choice_4(uint64_t in_1,\
+											uint64_t in_2);
+uint64_t		permutate_choice_5(uint64_t in, int option);
 char					*des(uint8_t **blocks_arr, int arr_len);
 char					*des_hash(uint8_t *hash);
 void					check_hex(t_ssl *ssl, char *s);
@@ -45,6 +47,6 @@ void					check_hex(t_ssl *ssl, char *s);
 char					*get_input(char *prompt);
 long long				ft_exponent(long long nbr, int power);
 void					des_processes(t_ssl *ssl, t_input **input,\
-										unsigned long long block_s);
+										uint64_t block_s);
 
 #endif

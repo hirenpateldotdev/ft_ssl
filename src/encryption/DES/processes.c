@@ -12,7 +12,7 @@
 
 #include "des.h"
 
-void		decryption_depadding(unsigned long long *block_s, int *len)
+void		decryption_depadding(uint64_t *block_s, int *len)
 {
 	int	j;
 
@@ -26,7 +26,7 @@ void		decryption_depadding(unsigned long long *block_s, int *len)
 }
 
 void		des_processes(t_ssl *ssl, t_input **input, \
-						unsigned long long block_s)
+						uint64_t block_s)
 {
 	unsigned char	blk[9];
 	int				j;

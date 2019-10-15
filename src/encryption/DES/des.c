@@ -45,78 +45,78 @@ int	g_sbox[32][16] = {{14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
 	{7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8},
 	{2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11}};
 
-static unsigned long long	des_encrypt_handler(unsigned long long l,
-					unsigned long long r, unsigned long long *subkeys, int i)
+static uint64_t	des_encrypt_handler(uint64_t l,
+					uint64_t r, uint64_t *subkeys, int i)
 {
-	unsigned long long		tmp_l;
-	unsigned long long		tmp_box;
-	unsigned long long		tmp_subkey;
-	int						row_col[2];
+	uint64_t		t_l;
+	uint64_t		t_b;
+	uint64_t		t_sk;
+	int						z[2];
 	int						j;
 
 	while (i++ < 16)
 	{
-		tmp_l = l;
+		t_l = l;
 		l = r;
 		r = permutate_choice_2(r);
-		tmp_subkey = subkeys[i - 1] ^ r;
+		t_sk = subkeys[i - 1] ^ r;
 		j = 8;
-		tmp_box = 0;
+		t_b = 0;
 		while (--j >= 0)
 		{
-			row_col[1] = (tmp_subkey % 64) / 2 % 16;
-			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
-			tmp_box += g_sbox[row_col[0] + j * 4][row_col[1]]
+			z[1] = (t_sk % B6) / 2 % 16;
+			z[0] = (t_sk % B6) / 32 * 2 + (t_sk % B6) % 2;
+			t_b += g_sbox[z[0] + j * 4][z[1]]
 						* ft_exponent(16, 7 - j);
-			tmp_subkey /= 64;
+			t_sk /= B6;
 		}
-		r = permutate_choice_3(tmp_box) ^ tmp_l;
+		r = permutate_choice_3(t_b) ^ t_l;
 	}
 	return (permutate_choice_4(r, l));
 }
 
-static unsigned long long	des_decrypt_handler(unsigned long long l,
-					unsigned long long r, unsigned long long *subkeys, int i)
+static uint64_t	des_decrypt_handler(uint64_t l,
+					uint64_t r, uint64_t *subkeys, int i)
 {
-	unsigned long long		tmp_r;
-	unsigned long long		tmp_box;
-	unsigned long long		tmp_subkey;
-	int						row_col[2];
+	uint64_t		t_r;
+	uint64_t		t_b;
+	uint64_t		t_sk;
+	int						z[2];
 	int						j;
 
 	while (--i >= 0)
 	{
-		tmp_r = r;
+		t_r = r;
 		r = l;
 		l = permutate_choice_2(l);
-		tmp_subkey = subkeys[i] ^ l;
+		t_sk = subkeys[i] ^ l;
 		j = 8;
-		tmp_box = 0;
+		t_b = 0;
 		while (--j >= 0)
 		{
-			row_col[1] = (tmp_subkey % 64) / 2 % 16;
-			row_col[0] = (tmp_subkey % 64) / 32 * 2 + (tmp_subkey % 64) % 2;
-			tmp_box += g_sbox[row_col[0] + j * 4][row_col[1]]
+			z[1] = (t_sk % B6) / 2 % 16;
+			z[0] = (t_sk % B6) / 32 * 2 + (t_sk % B6) % 2;
+			t_b += g_sbox[z[0] + j * 4][z[1]]
 						* ft_exponent(16, 7 - j);
-			tmp_subkey /= 64;
+			t_sk /= B6;
 		}
-		l = permutate_choice_3(tmp_box) ^ tmp_r;
+		l = permutate_choice_3(t_b) ^ t_r;
 	}
 	return (permutate_choice_4(l, r));
 }
 
-static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
+static uint64_t	crypt_des(t_ssl *ssl, uint64_t block_s)
 {
-	unsigned long long		tmp;
+	uint64_t		tmp;
 
 	tmp = block_s;
 	block_s = permutate_choice_1(block_s);
 	if (ssl->encrypt)
-		block_s = des_encrypt_handler(block_s / 4294967296,\
-					block_s % 4294967296, ssl->des_subkeys, 0);
+		block_s = des_encrypt_handler(block_s / B32,\
+					block_s % B32, ssl->des_subkeys, 0);
 	else
-		block_s = des_decrypt_handler(block_s % 4294967296,\
-					block_s / 4294967296, ssl->des_subkeys, 16);
+		block_s = des_decrypt_handler(block_s % B32,\
+					block_s / B32, ssl->des_subkeys, 16);
 	if (ssl->des_cbc && !ssl->encrypt)
 	{
 		block_s = block_s ^ ssl->des_iv;
@@ -127,18 +127,18 @@ static unsigned long long	crypt_des(t_ssl *ssl, unsigned long long block_s)
 
 static void					valid_des(t_ssl *ssl, t_input **input, int i, int j)
 {
-	unsigned long long		block_s;
+	uint64_t		block_s;
 
 	while (i < (int)INPUT->length || (ssl->encrypt && ssl->padded == 0))
 	{
 		j = 0;
 		block_s = 0;
 		while (i < (int)INPUT->length && j++ < 8)
-			block_s = block_s * 256 + (unsigned char)INPUT->content[i++];
+			block_s = block_s * B8 + (unsigned char)INPUT->content[i++];
 		if (i == (int)INPUT->length && j < 8 && (ssl->padded = 8 - j))
 		{
 			while (j++ < 8)
-				block_s = block_s * 256 + ssl->padded;
+				block_s = block_s * B8 + ssl->padded;
 		}
 		if (ssl->des_cbc && ssl->encrypt)
 			block_s = block_s ^ ssl->des_iv;
