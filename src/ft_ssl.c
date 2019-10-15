@@ -46,7 +46,6 @@ int				parse_arguments(t_ssl *ssl, t_input **input,
 		return (invalid_command(ssl->command_str));
 	if (ssl->command == 5)
 		ssl->des_cbc = 1;
-	ft_printf("\ncbc = %d | com = %d\n", ssl->des_cbc, ssl->command);
 	if (ssl->command >= 0 && ssl->command <= 1)
 		return (parse_message_digest(ssl, input, arg_len, arg));
 	else if (ssl->command == 2)

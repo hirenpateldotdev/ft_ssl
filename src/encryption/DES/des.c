@@ -149,7 +149,6 @@ static void			valid_des(t_ssl *ssl, t_input **input, int i, int j)
 
 int					des_handler(t_ssl *ssl, t_input **input)
 {
-	ft_printf("\ndes_handler\n");
 	if (!ssl->key)
 		check_hex(ssl, get_input("Enter your key: "));
 	if (ssl->des_cbc && !ssl->vector)
