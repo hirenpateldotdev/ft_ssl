@@ -50,9 +50,12 @@ int			parse_encryption(t_ssl *ssl, t_input **input,
 			SET_INVALID_FLAG;
 			invalid_flag(ssl->command_str, arg[i][1]);
 		}
-	if ((!ssl->current_input && has_error(ssl) != 1) || ssl->in_file == 0)
+	// if ((!ssl->current_input && has_error(ssl) != 1) || ssl->in_file == 0)
+	// 	parse_stdin(ssl, input);
+	if (input[0]->input_file == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
 	I_INPUT = 0;
 	ssl->encrypt = ssl->mode == 0 ? 1 : 0;
 	return ((has_error(ssl) == 1 ? -1 : 1));
 }
+//Lorem ipsum dolor sit amethel
