@@ -16,7 +16,8 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 {
 	int		fd;
 
-	fd = open(arg[i], 'r');
+	fd = open(arg[i], O_RDWR);
+	ft_printf("\ninput file fd = %d\nfile name = |%s|\n",fd,arg[i]);
 	if (fd == -1)
 	{
 		SET_INVALID_FLAG;
@@ -43,7 +44,7 @@ int			parse_output_file(char **arg, int i, t_ssl *ssl, t_input **input)
 {
 	int		fd;
 
-	fd = open(arg[i], 'r');
+	fd = open(arg[i], O_RDWR);
 	if (fd == -1)
 	{
 		SET_INVALID_FLAG;
