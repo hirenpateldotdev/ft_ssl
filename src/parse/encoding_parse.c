@@ -31,7 +31,12 @@ int			parse_encoding(t_ssl *ssl, t_input **input,
 			SET_INVALID_FLAG;
 			invalid_flag(ssl->command_str, arg[i][1]);
 		}
-	if (ssl->current_input == 0 && has_error(ssl) != 1)
+	ft_printf("\ninput[0]->input_file = %d\n",input[0]->input_file);
+	// if (input[0]->input_file == 0)
+	// 	ssl->current_input = 0;
+	// if (ssl->current_input == 0 && has_error(ssl) != 1)
+	// 	parse_stdin(ssl, input);
+	if (input[0]->input_file == 0 && has_error(ssl) != 1)
 		parse_stdin(ssl, input);
 	return ((has_error(ssl) == 1 ? -1 : 1));
 }

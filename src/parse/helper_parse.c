@@ -25,6 +25,7 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 		close(fd);
 		return (0);
 	}
+	INPUT->input_file = fd;
 	INPUT->length = ft_read_fd(fd, &INPUT->content);
 	ssl->len = INPUT->length;
 	INPUT->type = FILE;
@@ -35,7 +36,7 @@ int			parse_input_file(char **arg, int i, t_ssl *ssl, t_input **input)
 		INPUT->descriptor = ft_strdup(INPUT->content);
 	}
 	close(fd);
-	I_INPUT++;
+	// I_INPUT++;
 	ssl->in_file = 1;
 	return (0);
 }
@@ -53,7 +54,7 @@ int			parse_output_file(char **arg, int i, t_ssl *ssl, t_input **input)
 		return (0);
 	}
 	input[0]->output_file = fd;
-	I_INPUT++;
+	// I_INPUT++;
 	return (0);
 }
 
@@ -65,6 +66,8 @@ int			parse_stdin(t_ssl *ssl, t_input **input)
 	INPUT->length = ft_read_fd(fd, &INPUT->content);
 	INPUT->type = STDIN;
 	INPUT->descriptor = ft_strdup(INPUT->content);
-	I_INPUT++;
+	ft_printf("\nlen = %d\ntext = |%s|\ninput index = %d",INPUT->length,INPUT->content,I_INPUT);
+	// ft_printf("\ninput file fd = %d\nfile name = |%s|\n",fd,"stdin");
+	// I_INPUT++;
 	return (0);
 }
