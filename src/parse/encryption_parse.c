@@ -58,4 +58,3 @@ int			parse_encryption(t_ssl *ssl, t_input **input,
 	ssl->encrypt = ssl->mode == 0 ? 1 : 0;
 	return ((has_error(ssl) == 1 ? -1 : 1));
 }
-//Lorem ipsum dolor sit amethel
