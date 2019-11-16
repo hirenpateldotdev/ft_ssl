@@ -41,6 +41,7 @@ void			check_hex(t_ssl *ssl, char *s);
 void			set_subkeys(t_ssl *ssl);
 void			check_hex(t_ssl *ssl, char *s);
 char			*get_input(char *prompt);
+void			decryption_depadding(uint64_t *block_s, int *len);
 void			des_processes(t_ssl *ssl, t_input **input,\
 							uint64_t block_s);
 
