@@ -51,6 +51,27 @@ void				set_subkeys(t_ssl *ssl)
 	}
 }
 
+char				*get_input(char *prompt)
+{
+	char			*pass1;
+	char			*pass2;
+
+	ft_printf("\n%s", prompt);
+	ft_read_fd(0, &pass1);
+	ft_printf("\nVerifying - %s", prompt);
+	ft_read_fd(0, &pass2);
+	ft_printf("\n");
+	if (ft_strcmp(pass1, pass2) != 0)
+	{
+		ft_printf("\nVerifying failure");
+		free(pass1);
+		free(pass2);
+		exit(1);
+	}
+	free(pass1);
+	return (pass2);
+}
+
 void				check_hex(t_ssl *ssl, char *s)
 {
 	int				i;
@@ -78,25 +99,4 @@ void				check_hex(t_ssl *ssl, char *s)
 		ssl->des_key = tmp;
 	else if (ssl->des_cbc && !ssl->vector && (ssl->vector = 1))
 		ssl->des_iv = tmp;
-}
-
-char				*get_input(char *prompt)
-{
-	char			*pass1;
-	char			*pass2;
-
-	ft_printf("\n%s", prompt);
-	ft_read_fd(0, &pass1);
-	ft_printf("\nVerifying - %s", prompt);
-	ft_read_fd(0, &pass2);
-	ft_printf("\n");
-	if (ft_strcmp(pass1, pass2) != 0)
-	{
-		ft_printf("\nVerifying failure");
-		free(pass1);
-		free(pass2);
-		exit(1);
-	}
-	free(pass1);
-	return (pass2);
 }
